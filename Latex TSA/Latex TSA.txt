@@ -1,0 +1,875 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+
+% Lề
+\usepackage[left=1.5cm,right=2cm,top=2.5cm,bottom=4cm]{geometry}
+
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amsmath,amssymb}
+\usepackage{setspace}
+
+\usetikzlibrary{shapes.geometric, calc}
+
+% Font mặc định LaTeX
+% Không dùng mathptmx, newpxtext, newtxtext...
+
+\setstretch{1.12}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.12cm}
+\everymath{\displaystyle}
+
+% Màu sắc
+\definecolor{AeckRed}{HTML}{C40201}
+\definecolor{DarkAeckRed}{HTML}{990000}
+\definecolor{AeckGrey}{HTML}{4A4A4A}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+% ======================================
+% HEADER
+% ======================================
+\fancyhead[C]{
+    \begin{tikzpicture}[remember picture, overlay]
+        %\fill[AeckGrey] ([xshift=-0.4cm]current page.south east) rectangle (current page.north east);
+
+        \coordinate (BannerTopLeft) at (current page.north west);
+        \coordinate (BannerTopRight) at ([xshift=9.5cm]current page.north west);
+        \coordinate (BannerBottomRight) at ([xshift=8.8cm, yshift=-1.5cm]current page.north west);
+        \coordinate (BannerBottomLeft) at ([yshift=-1.5cm]current page.north west);
+        \fill[DarkAeckRed] (BannerTopLeft) -- (BannerTopRight) -- (BannerBottomRight) -- (BannerBottomLeft) -- cycle;
+
+        \node[anchor=center] at ([xshift=4cm, yshift=-0.75cm]current page.north west) {
+            \includegraphics[height=1cm]{banner_text.png}
+        };
+
+        \foreach \i in {0,1,...,10} {
+            \coordinate (StripTop) at ([xshift=9.7cm + \i*0.45cm]current page.north west);
+            \fill[AeckRed] (StripTop)
+                -- ++(0.25cm, 0)
+                -- ++(-0.7cm, -1.5cm)
+                -- ++(-0.25cm, 0)
+                -- cycle;
+        }
+
+        \node[anchor=east, inner sep=0pt] at ([xshift=-0.8cm, yshift=-0.9cm]current page.north east) {
+             \includegraphics[height=0.8cm]{hust.png}
+        };
+    \end{tikzpicture}
+}
+
+% ======================================
+% FOOTER
+% ======================================
+\fancyfoot[C]{
+    \begin{tikzpicture}[remember picture, overlay]
+
+        % MẢNG ĐỎ TRÁI - MŨI NHỌN HƯỚNG VÀO GIỮA
+        \fill[AeckRed]
+            ([xshift=0cm, yshift=0.6cm]current page.south west)
+            -- ([xshift=5.4cm, yshift=0.6cm]current page.south west)
+            -- ([xshift=5.95cm, yshift=1.05cm]current page.south west)
+            -- ([xshift=5.4cm, yshift=1.5cm]current page.south west)
+            -- ([xshift=0cm, yshift=1.5cm]current page.south west)
+            -- cycle;
+
+        \node[anchor=west, text=white, font=\bfseries]
+    at ([xshift=0.15cm, yshift=1.05cm]current page.south west)
+    {Nghiêm Xuân Tân TSA};
+
+        % MẢNG ĐỎ PHẢI - MŨI NHỌN HƯỚNG VÀO GIỮA
+        \fill[AeckRed]
+            ([xshift=0cm, yshift=0.6cm]current page.south east)
+            -- ([xshift=-4.05cm, yshift=0.6cm]current page.south east)
+            -- ([xshift=-4.60cm, yshift=1.05cm]current page.south east)
+            -- ([xshift=-4.05cm, yshift=1.5cm]current page.south east)
+            -- ([xshift=0cm, yshift=1.5cm]current page.south east)
+            -- cycle;
+
+        \node[anchor=east, text=white, font=\bfseries]
+            at ([xshift=-0.55cm, yshift=1.05cm]current page.south east)
+            {Trang \thepage};
+
+        % LOGO Ở CHÍNH GIỮA 2 ĐẦU MŨI TÊN
+        \node[anchor=center, inner sep=0pt]
+            at ([xshift=0.50cm, yshift=1.05cm]current page.south)
+            {\includegraphics[height=0.85cm]{tsa_footer.png}};
+
+    \end{tikzpicture}
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+\setcounter{page}{32}
+\newcommand{\Cau}[1]{%
+\vspace{0.28cm}%
+\noindent{\fontsize{13.5}{15}\selectfont\bfseries\textcolor{AeckRed}{Câu #1 :}}\hspace{0.18cm}%
+}
+
+\newcommand{\blankline}[1]{%
+\textcolor{AeckRed!70}{\rule{#1}{0.5pt}}%
+}
+
+\newcommand{\choicecircle}{%
+\tikz[baseline=-0.55ex]\fill[gray!35] (0,0) circle (5.8pt);%
+}
+
+% ======================================
+% KHUNG TIÊU ĐỀ - TƯ DUY KHOA HỌC
+% ======================================
+\begin{center}
+\begin{tikzpicture}
+    \def\W{17.1}
+    \def\H{1.85}
+
+    \fill[AeckRed!3, rounded corners=6pt]
+        (0,0) rectangle (\W,\H);
+
+    \draw[AeckRed, line width=1.1pt, rounded corners=6pt]
+        (0,0) rectangle (\W,\H);
+
+    \fill[white, rounded corners=5pt]
+        (0.22,0.20) rectangle (4.25,1.65);
+
+    \draw[AeckRed!60, dashed, line width=0.7pt]
+        (4.50,0.18) -- (4.50,1.67);
+
+    \node[anchor=center, inner sep=0pt] at (2.23,0.93) {
+        \includegraphics[width=3.35cm,height=1.15cm,keepaspectratio]{tsa.png}
+    };
+
+    \node[anchor=center, align=center, text=AeckRed,
+          font=\bfseries\fontsize{19}{21}\selectfont]
+        at (10.85,0.93)
+        {TƯ DUY KHOA HỌC};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.55cm}
+
+% =========================
+% HELPER NẾU CHƯA CÓ
+% =========================
+\newcommand{\dragbox}[1]{%
+\tikz[baseline=-0.55ex]\node[
+    fill=AeckRed!25,
+    text=black,
+    rounded corners=3pt,
+    inner xsep=10pt,
+    inner ysep=3pt
+]{#1};%
+}
+
+\newcommand{\answerbox}[1]{%
+\tikz[baseline=-0.55ex]\node[
+    draw=black!55,
+    dashed,
+    rounded corners=2pt,
+    minimum width=#1,
+    minimum height=0.55cm,
+    inner sep=0pt
+]{};%
+}
+
+\newcommand{\checkbox}{%
+\tikz[baseline=-0.55ex]\fill[gray!35, rounded corners=1.5pt] (0,0) rectangle (0.28,0.28);%
+}
+
+% =========================
+% VĂN BẢN 1
+% =========================
+
+\begin{center}
+{\bfseries\textcolor{AeckRed}{Văn bản 1: Ảnh hưởng của sóng điện từ}}
+\end{center}
+
+Năm 1979, nhóm nghiên cứu của N. Wertheimer và E.D. Leeper đã công bố trên tạp chí dịch tễ học một báo cáo về mối liên hệ giữa cấu hình đường dây điện cao áp và tần suất ung thư ở trẻ em tại bang Colorado (Mỹ). Tuy nhiên, kết quả nghiên cứu này vẫn còn gây nhiều tranh cãi trong cộng đồng khoa học do các thí nghiệm chưa được thực hiện trong những điều kiện kiểm soát chặt chẽ, đồng thời còn tồn tại nhiều yếu tố có ảnh hưởng chưa được loại bỏ.
+
+Theo đề xuất của M. Markov và cộng sự, khi nghiên cứu ảnh hưởng của việc phơi nhiễm sóng điện từ lên sinh vật, cần xem xét tác động tổng hợp lên toàn bộ cơ thể thay vì chỉ ở cấp độ tế bào hay mô. Vì vậy, các đối tượng sinh học như vi khuẩn, nấm men hoặc sinh vật đơn bào được xem là phù hợp để khảo sát các ảnh hưởng này.
+
+Sóng điện từ trong môi trường sống chủ yếu phát sinh từ các thiết bị điện dân dụng sử dụng mạng điện lưới có tần số $50$ Hz. Do đó, việc nghiên cứu ảnh hưởng của thời gian phơi nhiễm với sóng điện từ tần số thấp đối với các đối tượng sinh học là hết sức cần thiết.
+
+Thí nghiệm dưới đây được thiết kế nhằm khảo sát ảnh hưởng của thời gian phơi nhiễm sóng điện từ tần số $50$ Hz lên một số đối tượng sinh học có hình thái khác nhau. Nguồn tạo từ trường là một ống dây có đường kính ngoài $235$ mm, đường kính trong $205$ mm và chiều dài $L$ (với $L$ lớn hơn rất nhiều so với đường kính ống dây). Các vòng dây được quấn sít nhau và nối với nguồn điện xoay chiều có tần số $50$ Hz, cường độ dòng điện có thể điều chỉnh. Giá trị cường độ dòng điện cực đại $I$ lớn hơn giá trị hiệu dụng. Điện từ trường biến thiên trong không gian được tạo ra xung quanh các nguồn dòng điện biến thiên theo thời gian.
+
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{kh_cau1_hinh1.png}
+\end{center}
+
+Sóng điện từ do dòng điện xoay chiều tạo ra biến thiên theo thời gian và lan truyền trong không gian, với tần số bằng đúng tần số của dòng điện chạy trong dây dẫn. Trong không khí, sóng điện từ lan truyền với bước sóng $\lambda=\dfrac{c}{f}$, trong đó $c\approx3\times10^8\ \mathrm{m/s}$ là tốc độ ánh sáng trong chân không và $f$ là tần số sóng điện từ.
+
+Độ lớn cảm ứng từ $B$ tại trục của một ống dây hình trụ đủ dài (chiều dài lớn hơn rất nhiều so với đường kính và điểm xét nằm xa hai đầu ống), được quấn một lớp dây mang dòng điện cường độ $I$, được xác định theo công thức:
+\[
+B=\mu_0 nI
+\]
+trong đó $\mu_0=4\pi\times10^{-7}\ \mathrm{H/m}$ là hằng số từ và $n$ là số vòng dây trên một đơn vị chiều dài. Khi các vòng dây được quấn sít nhau, số vòng dây trên một đơn vị chiều dài được xác định bởi $n=\dfrac{N}{L}$, với $N$ là tổng số vòng dây và $L$ là chiều dài hình trụ.
+
+Hình $1$ minh họa sơ đồ hệ tạo từ trường tần số thấp dùng trong thí nghiệm. Đối tượng sinh học thử nghiệm (Hình 2) gồm các vi khuẩn: Escherichia coli (E. coli), Leclercia adecarboxylata (L. adecarboxylata), Staphylococcus aureus (S. aureus), Paracoccus denitrificans (P. denitrificans), Sphingomonas paucimobilis (S. paucimobilis) và Rhodococcus erythropolis (R. erythropolis). Hình thái học của các vi khuẩn này được xác định thông qua các thanh thước chuẩn gắn trên các hình ảnh tương ứng.
+
+\begin{center}
+    \includegraphics[width=0.75\textwidth]{kh_cau1_hinh2.png}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=0.55\textwidth]{kh_cau1_bieudo.png}
+\end{center}
+
+\Cau{1}Theo nghiên cứu của N. Wertheimer và E.D. Leeper đã công bố trên tạp chí dịch tễ học một báo cáo về mối liên hệ giữa cấu hình đường dây điện cao áp và tần suất ung thư ở trẻ em tại bang Colorado (Mỹ). Kết quả nghiên cứu gây ra tranh cãi vì nhiều yếu tố như điều kiện thí nghiệm không chặt chẽ. Phát biểu trên là đúng hay sai?
+
+\vspace{0.12cm}
+
+\begin{center}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.42\textwidth}@{}}
+\choicecircle\quad Đúng
+&
+\choicecircle\quad Sai
+\end{tabular}
+\end{center}
+
+\Cau{2}Theo đề xuất của M. Markov và cộng sự, khi nghiên cứu ảnh hưởng của việc phơi nhiễm sóng điện từ lên sinh vật, thì những sinh vật nào dưới đây bị tác động. Hãy chọn nhiều đáp án đúng?
+
+\vspace{0.12cm}
+
+\begin{center}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.42\textwidth}@{}}
+\checkbox\quad Vi khuẩn
+&
+\checkbox\quad Sinh vật đơn bào
+\\[0.25cm]
+\checkbox\quad Nấm men
+&
+\checkbox\quad Vi sinh vật nguyên sinh
+\end{tabular}
+\end{center}
+
+\Cau{3}Quan sát biểu đồ H2 thì kết luận nào sau đây là đúng:
+
+\vspace{0.12cm}
+
+\begin{tabular}{@{}p{0.95\textwidth}@{}}
+\choicecircle\quad Vi khuẩn E.coli do có dạng hình que nên bị tác động nhiều nhất \\[0.18cm]
+\choicecircle\quad L.adecarboxylata do có dạng hình que thẳng nên bị tác động nhiều nhất \\[0.18cm]
+\choicecircle\quad S.aureus do có dạng hình cầu nên ít bị ảnh hưởng nhất
+\end{tabular}
+
+\Cau{4}Cho $2$ hình sau, hãy chọn đáp án đúng:
+
+\vspace{0.15cm}
+
+\begin{center}
+    \includegraphics[width=0.52\textwidth]{kh_cau4_hinh.png}
+\end{center}
+
+\begin{center}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.42\textwidth}@{}}
+\choicecircle\quad Hình A đúng và B sai
+&
+\choicecircle\quad Hình A sai và B sai
+\\[0.25cm]
+\choicecircle\quad Hình A sai và A đúng
+&
+\choicecircle\quad Hình A đúng và B đúng
+\end{tabular}
+\end{center}
+
+{\setlength{\baselineskip}{25pt}
+\Cau{5}Hãy tính $L_{\min}$ sao cho sai số của $B_L$ không quá $5\%$, cho công thức sau:
+\[
+B_L=\mu_0nI\cdot\dfrac{1}{\sqrt{1+\left(\dfrac{D}{L}\right)^2}}
+\]
+Biết rằng $B_0=\mu_0nI$.
+\par}
+
+\vspace{0.12cm}
+
+\begin{center}
+\begin{tabular}{@{}p{0.22\textwidth}p{0.22\textwidth}p{0.22\textwidth}p{0.22\textwidth}@{}}
+\choicecircle\quad $1362$ mm
+&
+\choicecircle\quad $1243$ mm
+&
+\choicecircle\quad $763$ mm
+&
+\choicecircle\quad $659$ mm
+\end{tabular}
+\end{center}
+
+\newpage
+
+% =========================
+% VĂN BẢN 2
+% =========================
+
+\begin{center}
+{\bfseries\textcolor{AeckRed}{Văn bản 2: Apoptosis và Hoại tử}}
+\end{center}
+
+Các tế bào trong cơ thể con người liên tục được đổi mới, và trong quá trình này, các tế bào ban đầu sẽ dần chết đi. Cái chết này bao gồm quá trình lão hoá tự nhiên và các con đường không lão hoá khác. Có nhiều phương thức chết tế bào khác nhau, bao gồm apoptosis, autophagy, pyroptosis, copper death, ferroptosis, v.v.
+
+Bên cạnh apoptosis, hoại tử (necrosis) là một hình thức chết tế bào phổ biến nhưng mang tính thụ động và thường xảy ra do tác động từ bên ngoài như chấn thương, nhiễm độc, thiếu oxy hoặc nhiễm trùng. Khác với apoptosis -- là quá trình chết tế bào có kiểm soát bởi gen -- hoại tử xảy ra khi tế bào bị tổn thương nghiêm trọng, mất khả năng duy trì cân bằng nội môi. Trong hoại tử, màng tế bào bị phá vỡ, các thành phần bên trong tế bào tràn ra môi trường xung quanh, gây phản ứng viêm mạnh ở mô lân cận. Vì vậy, hoại tử thường liên quan đến tổn thương mô và các bệnh lý nghiêm trọng.
+
+Apoptosis, còn được gọi là chết tế bào theo chương trình hoặc tự tử tế bào, là một quá trình chết tế bào chủ động dưới sự kiểm soát của gen. Không giống như hoại tử, apoptosis không giải phóng thành phần tế bào vào môi trường xung quanh. Apoptosis tồn tại rộng rãi trong thế giới sinh học và xảy ra trong điều kiện sinh lý và bệnh lý bình thường. Nó đóng vai trò quan trọng trong sự phát triển phôi, sự ổn định của mô, khả năng phòng vệ của cơ thể và phản ứng miễn dịch, và do đó đã trở thành một trong những điểm nóng trong nghiên cứu y sinh học. Phát hiện protein được kích hoạt trong quá trình apoptosis: Sau khi màng tế bào mất tính đối xứng, một số protein liên quan đến apoptosis trong tế bào được kích hoạt, chẳng hạn như Bcl-2, BAX, FASL/TNFSF6, TNF-$\alpha$, v.v. Các protein được kích hoạt trong tế bào có thể được xác định bằng ELISA và các phương pháp khác để kết luận liệu các tế bào có đang trong trạng thái apoptosis hay không. Phát hiện hoạt động của enzyme caspase: Trong giai đoạn đầu của quá trình apoptosis, caspase có trong tế bào chất được kích hoạt, kích hoạt một loạt các phản ứng liên quan đến apoptosis. Quá trình apoptosis của tế bào có thể được xác định bằng cách phát hiện hoạt động của caspase.
+
+\Cau{1}Điền các từ thích hợp vào chỗ trống.
+
+Thông qua các nghiên cứu liên quan về gen và các đột biến. Trong \blankline{1.7cm}, \blankline{1.7cm} ức chế quá trình chết theo chương trình apoptosis đồng thời kéo dài thời gian và thúc đẩy sự \blankline{1.7cm} các tế bào.
+
+\Cau{2}Chọn đáp án sai trong các đáp án sau.
+
+\vspace{0.12cm}
+
+\begin{tabular}{@{}p{0.95\textwidth}@{}}
+\choicecircle\quad Quá trình apoptosis được kiểm soát có quy luật chặt chẽ \\[0.18cm]
+\choicecircle\quad Quá trình hoại tử và apoptosis khác nhau về bản chất \\[0.18cm]
+\choicecircle\quad Trong quá trình chết, các thành phần tế bào được giải phóng vào môi trường \\[0.18cm]
+\choicecircle\quad Đóng vai trò quan trọng trong sinh học cơ thể con người
+\end{tabular}
+
+\Cau{3}Dựa vào bài đọc hãy nói các giai đoạn xảy ra tương ứng với các hình ảnh dưới.
+
+\vspace{0.5cm}
+\begin{center}
+\begin{tikzpicture}
+    % Vòng lặp vẽ 4 dòng giống nhau (chỉ đổi y và tên ảnh)
+    \foreach \i/\y in {1/0, 2/-3.8, 3/-7.6, 4/-11.4} {
+        % Khung ảnh bên trái
+        \node[draw=gray!40, fill=gray!5, rounded corners=8pt, minimum width=6cm, minimum height=3.2cm, inner sep=0pt] (img\i) at (-3.5,\y) {
+            % BẠN CHỈ CẦN THAY TÊN ẢNH CỦA BẠN VÀO ĐÂY (cau3_1.png, ...)
+            \includegraphics[width=5.5cm, height=2.8cm, keepaspectratio]{cau3_\i.png}
+        };
+        % Huy hiệu số đính kèm mép trái khung ảnh
+        \node[circle, fill=AeckRed, text=white, font=\bfseries\sffamily, inner sep=2pt, minimum size=0.7cm] at (img\i.west) {\i};
+        
+        % Mũi tên chỉ sang phải
+        \node[text=gray!70, font=\Huge] at (0.2,\y) {$\rightarrow$};
+        
+        % Khung viền đứt nét bên phải để thả đáp án
+        \node[draw=gray!70, dashed, line width=1pt, rounded corners=6pt, minimum width=6.5cm, minimum height=1.2cm] (ans\i) at (4.5,\y) {};
+        % Hình tròn đứt nét làm điểm thả
+        \node[draw=gray!70, dashed, line width=1pt, circle, minimum size=0.9cm, fill=white] at ([xshift=0.5cm]ans\i.west) {};
+    }
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+\noindent
+\begin{tikzpicture}
+    % Khung bao quanh Danh sách (Màu hồng nhạt viền đỏ)
+    \node[draw=AeckRed!60, fill=AeckRed!5, line width=1pt, rounded corners=8pt, minimum width=\textwidth, minimum height=4cm] (bg) at (0,0) {};
+    
+    % Chữ "Danh sách"
+    \node[anchor=north west, font=\Large\bfseries\sffamily, text=AeckRed] at ([xshift=10pt, yshift=-10pt]bg.north west) {Danh sách};
+    
+    % CÁC LỰA CHỌN A, B, C, D
+    % Option A
+    \node[draw=gray!40, fill=white, rounded corners=6pt, minimum width=7.5cm, minimum height=1.2cm] (optA) at (-3.9, -0.2) {\textbf{Giai đoạn 1}};
+    \node[circle, fill=AeckRed, text=white, font=\bfseries\sffamily, inner sep=2pt, minimum size=0.7cm] at (optA.west) {A};
+    
+    % Option B
+    \node[draw=gray!40, fill=white, rounded corners=6pt, minimum width=7.5cm, minimum height=1.2cm] (optB) at (3.9, -0.2) {\textbf{Giai đoạn 2}};
+    \node[circle, fill=AeckRed, text=white, font=\bfseries\sffamily, inner sep=2pt, minimum size=0.7cm] at (optB.west) {B};
+
+    % Option C
+    \node[draw=gray!40, fill=white, rounded corners=6pt, minimum width=7.5cm, minimum height=1.2cm] (optC) at (-3.9, -1.8) {\textbf{Giai đoạn 3}};
+    \node[circle, fill=AeckRed, text=white, font=\bfseries\sffamily, inner sep=2pt, minimum size=0.7cm] at (optC.west) {C};
+
+    % Option D
+    \node[draw=gray!40, fill=white, rounded corners=6pt, minimum width=7.5cm, minimum height=1.2cm] (optD) at (3.9, -1.8) {\textbf{Giai đoạn 4}};
+    \node[circle, fill=AeckRed, text=white, font=\bfseries\sffamily, inner sep=2pt, minimum size=0.7cm] at (optD.west) {D};
+\end{tikzpicture}
+
+\begin{center}
+    \includegraphics[width=0.92\textwidth]{kh_vb2_cau3.png}
+\end{center}
+
+\Cau{4}Hãy nối tương ứng với quá trình chết:
+
+\vspace{0.15cm}
+
+\begin{center}
+    \includegraphics[width=0.92\textwidth]{kh_vb2_cau4.png}
+\end{center}
+
+\Cau{5}Hãy nối tương ứng với trước quá trình chết:
+
+\vspace{0.15cm}
+
+\begin{center}
+    \includegraphics[width=0.92\textwidth]{kh_vb2_cau5.png}
+\end{center}
+
+\newpage
+
+% =========================
+% VĂN BẢN 3
+% =========================
+
+\begin{center}
+{\bfseries\textcolor{AeckRed}{Văn bản 3: Cân bằng hóa học}}
+\end{center}
+
+Trong các phòng thí nghiệm hoá học, một thí nghiệm kinh điển thường được sử dụng để minh hoạ cho phản ứng thuận nghịch và trạng thái cân bằng động là phản ứng giữa khí $H_2$ và hơi $I_2$, có phương trình sau:
+\[
+H_2+I_2\rightleftharpoons2HI
+\]
+
+\begin{center}
+    \includegraphics[width=0.62\textwidth]{kh_vb3_dothi.png}
+\end{center}
+
+$I_2$ ở trạng thái khí khi có màu tím đặc trưng, vì vậy sự thay đổi nồng độ của $I_2$ trong quá trình phản ứng có thể được quan sát trực tiếp bằng mắt thường thông qua sự thay đổi màu sắc của hỗn hợp khí. Bình được đun nóng và giữ ổn định ở các nhiệt độ sau trong suốt thí nghiệm. Khi phản ứng bắt đầu, nồng độ các chất thay đổi theo thời gian: lượng $H_2$ và $I_2$ giảm dần, trong khi lượng $HI$ tăng dần. Đồng thời, màu tím của hỗn hợp khí nhạt dần theo thời gian. Sau một khoảng thời gian, màu sắc của hỗn hợp không thay đổi nữa, mặc dù phản ứng vẫn tiếp tục xảy ra theo cả hai chiều. Phân tích hỗn hợp khí tại thời điểm này cho kết quả:
+
+\vspace{0.15cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Nhiệt độ $(^\circ C)$ & Số mol $H_2$ cb & Số mol $I_2$ cb & Số mol $HI$ cb \\
+\hline
+$480$ & $0,0005$ & $0,00389$ & $x$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Ở $480^\circ C$, hằng số cân bằng là $49$.
+
+\Cau{1}Cho các phát biểu sau, hãy điền số phát biểu đúng:
+
+A. Ở thời điểm cân bằng, tốc độ phản ứng thuận bằng phản ứng nghịch.
+
+B. Khi đạt trạng thái cân bằng, nồng độ các chất không biến đổi theo thời gian.
+
+C. Phản ứng dừng lại khi đạt trạng thái cân bằng.
+
+D. Ở trạng thái cân bằng, nồng độ các chất bằng nhau.
+
+E. Phản ứng xảy ra hoàn toàn.
+
+Số phát biểu đúng là \blankline{1.8cm}.
+
+\Cau{2}Ở $480^\circ C$, ta biết rằng phương trình ở trạng thái cân bằng và gọi tỷ lệ $HI:H_2=x$. Tính $x$. Khi đó $x=$ \blankline{1.8cm} (làm tròn đến hàng đơn vị).
+
+\Cau{3}Xét tính đúng/sai của các phát biểu sau:
+
+\vspace{0.15cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.75}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{|p{0.72\textwidth}|c|c|}
+\hline
+\centering\textbf{\textcolor{AeckRed}{Mệnh đề}}
+&
+\textbf{\textcolor{AeckRed}{Đúng}}
+&
+\textbf{\textcolor{AeckRed}{Sai}}
+\tabularnewline
+\hline
+Hỗn hợp màu tím nhạt dần theo thời gian. & \choicecircle & \choicecircle \\
+\hline
+Hằng số cân bằng $K_C=50$ (Làm tròn đến hàng đơn vị). & \choicecircle & \choicecircle \\
+\hline
+Khi đạt trạng thái cân bằng, phương trình ngừng phản ứng. & \choicecircle & \choicecircle \\
+\hline
+Màu tím của hỗn hợp khi đạt tới trạng thái cân bằng thì giữ nguyên và không thay đổi nữa. & \choicecircle & \choicecircle \\
+\hline
+Phương trình cân bằng động, vận tốc thuận bằng vận tốc nghịch. & \choicecircle & \choicecircle \\
+\hline
+\end{tabular}
+\end{center}
+
+\Cau{4}Dựa vào hình vẽ, hãy kéo thả các đáp án sau:
+
+\vspace{0.12cm}
+
+\begin{center}
+\dragbox{phản ứng thuận}\hspace{0.15cm}
+\dragbox{phản ứng nghịch}\hspace{0.15cm}
+\dragbox{điểm cân bằng}\hspace{0.15cm}
+\dragbox{trạng thái cân bằng}
+\end{center}
+
+Dựa vào hình để bài cung cấp, đường A biểu diễn \answerbox{1.8cm} với nồng độ chất tham gia giảm, đường B biểu diễn \answerbox{1.8cm} với nồng độ chất sản phẩm tăng. Theo thời gian phương trình có vận tốc nghịch bằng vận tốc thuận khi điểm C \answerbox{1.8cm}.
+
+\newpage
+
+% =========================
+% VĂN BẢN 4
+% =========================
+
+\begin{center}
+{\bfseries\textcolor{AeckRed}{Văn bản 4: Tinh bột}}
+\end{center}
+
+Tinh bột là một trong những hợp chất carbohydrate phổ biến nhất trong tự nhiên, đóng vai trò là nguồn dự trữ năng lượng chính của thực vật. Về bản chất, tinh bột là polysaccharide được cấu tạo từ rất nhiều đơn vị $\alpha$-glucose liên kết với nhau qua liên kết glycoside. Hai dạng cấu trúc chính của tinh bột là amylose (mạch thẳng) và amylopectin (mạch phân nhánh phức tạp). Công thức phân tử tổng quát của tinh bột thường được biểu diễn dưới dạng: $(C_6H_{10}O_5)_n$.
+
+Tinh bột được cây tổng hợp thông qua quá trình quang hợp. Trong đó, khí carbon dioxide từ không khí và nước từ đất, dưới tác dụng của ánh sáng và diệp lục, tạo ra glucose và khí oxygen. Glucose sau đó tiếp tục trùng ngưng để tạo thành tinh bột dự trữ trong rễ, thân, hạt và củ. Phản ứng quang hợp tổng quát:
+\[
+6CO_2+6H_2O \xrightarrow[\text{chlorophyl}]{\text{ánh sáng}} C_6H_{12}O_6+6O_2
+\]
+\[
+nC_6H_{12}O_6\rightarrow(C_6H_{10}O_5)_n+(n-1)H_2O
+\]
+
+Về tính chất hóa học, tinh bột không tan trong nước nguội nhưng trương nở khi đun nóng tạo thành hồ tinh bột. Hồ tinh bột có khả năng tạo màu xanh tím đặc trưng với dung dịch iodine ($I_2$ trong $KI$). Màu này xuất hiện do iodine chui vào cấu trúc xoắn của amylose. Tuy nhiên, khi đun nóng hoặc khi tinh bột bị phân giải, màu này sẽ mất đi. Trong cơ thể người, tinh bột bắt đầu bị phân giải ngay từ khoang miệng nhờ enzyme amylase trong nước bọt, tạo thành maltose -- một loại đường đôi có vị hơi ngọt. Quá trình thuỷ phân tiếp tục diễn ra ở ruột non nhờ nhiều enzyme khác, cuối cùng tạo thành glucose để cơ thể hấp thụ. Ngoài enzyme amylase, tinh bột còn có thể bị thuỷ phân trong môi trường acid ở nhiệt độ cao. Khi cho vài giọt iodine, ta thấy xuất hiện màu tím đậm (thường gọi là xanh hồ tinh bột).
+
+\Cau{1}Cho các phát biểu sau:
+
+1. Trong mỗi phân tử tinh bột có chứa $5$ oxygen.
+
+2. Chỉ có enzyme amylase mới phân giải được tinh bột.
+
+3. Được tổng hợp thông qua quá trình quang hợp.
+
+4. Là polysaccharide gồm nhiều gốc glucose liên kết với nhau.
+
+5. Tinh bột làm dung dịch Iodine mất màu.
+
+Có \blankline{1.8cm} phát biểu đúng.
+
+\Cau{2}Trong quá trình quang hợp, cây xanh hấp thụ $CO_2$ và $H_2O$ để tạo ra glucose, sau đó glucose trùng ngưng thành tinh bột dự trữ. Giả sử để hình thành $8,1$ tấn tinh bột hoàn toàn từ sản phẩm quang hợp thì cây cần hấp thụ từ môi trường $x$ khối lượng carbon dioxide và tạo ra $y$ khối lượng oxygen. Khi đó $x+y=$ \blankline{1.8cm} (tấn).
+
+\Cau{3}Xét tính đúng sai của các phát biểu sau:
+
+\vspace{0.15cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.75}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{|p{0.72\textwidth}|c|c|}
+\hline
+\centering\textbf{\textcolor{AeckRed}{Mệnh đề}}
+&
+\textbf{\textcolor{AeckRed}{Đúng}}
+&
+\textbf{\textcolor{AeckRed}{Sai}}
+\tabularnewline
+\hline
+Glucose được hình thành trong cây thông qua quá trình thuỷ phân & \choicecircle & \choicecircle \\
+\hline
+Khi nhai kỹ những chất chứa tinh bột, trong miệng sẽ tiết ra enzyme amylase phân giải thành maltose nên sẽ có vị ngọt & \choicecircle & \choicecircle \\
+\hline
+Tinh bột là nguồn dự trữ năng lượng chính & \choicecircle & \choicecircle \\
+\hline
+Tinh bột phản ứng màu xanh đậm với thuốc thử Iodine & \choicecircle & \choicecircle \\
+\hline
+Dùng thuốc thử Iodine có thể kiểm tra xem phản ứng đã xảy ra hoàn toàn hay chưa & \choicecircle & \choicecircle \\
+\hline
+\end{tabular}
+\end{center}
+
+\Cau{4}Chọn nhiều đáp án đúng:
+
+\vspace{0.12cm}
+
+\begin{tabular}{@{}p{0.95\textwidth}@{}}
+\checkbox\quad Tinh bột và glucose đều thuộc nhóm carbohydrate và có công thức chung là $C_n(H_2O)_m$ \\[0.18cm]
+\checkbox\quad Tinh bột và glucose là những polymer tự nhiên, dễ dàng tìm thấy được \\[0.18cm]
+\checkbox\quad Trong thành phần chỉ chứa ba nguyên tố hoá học là C, H, O \\[0.18cm]
+\checkbox\quad Thuỷ phân tinh bột trong môi trường acid sẽ tạo thành các monomer
+\end{tabular}
+
+\newpage
+
+% =========================
+% VĂN BẢN 5
+% =========================
+
+\begin{center}
+{\bfseries\textcolor{AeckRed}{Văn bản 5: Dầu mỏ}}
+\end{center}
+
+Dầu mỏ là hỗn hợp phức tạp của nhiều loại hydrocarbon khác nhau, hình thành từ quá trình biến đổi lâu dài của vật chất hữu cơ trong lòng đất. Thành phần chủ yếu của dầu mỏ là các alkan mạch thẳng, mạch nhánh và vòng, ngoài ra còn có một lượng nhỏ các hợp chất chứa lưu huỳnh, nitrogen và oxygen. Trong công nghiệp lọc - hoá dầu, dầu thô được tách thành các phân đoạn nhờ phương pháp chưng cất phân đoạn dựa trên sự khác nhau về nhiệt độ sôi. Các phân đoạn nhẹ được dùng làm xăng, nhiên liệu phản lực; các phân đoạn nặng hơn tạo thành dầu diesel (DO), dầu mazut và nhựa đường.
+
+Chất lượng xăng được đánh giá thông qua chỉ số octan, phản ánh khả năng chống kích nổ của nhiên liệu trong động cơ. Để nâng cao chỉ số octan, người ta áp dụng các quá trình như cracking, reforming và isomer hóa, trong đó các hydrocarbon mạch thẳng có thể chuyển thành mạch nhánh hoặc mạch vòng bền hơn khi cháy.
+
+Trong thành phần dầu mỏ tự nhiên luôn tồn tại một lượng nhỏ lưu huỳnh. Khi đốt cháy nhiên liệu chứa lưu huỳnh, lưu huỳnh bị oxi hoá tạo thành khí $SO_2$, là một trong những tác nhân gây ô nhiễm không khí và mưa acid. Vì vậy, việc kiểm soát hàm lượng lưu huỳnh trong xăng dầu là một yêu cầu quan trọng trong các tiêu chuẩn nhiên liệu hiện đại.
+
+Một số giải pháp được áp dụng để giảm thiểu khí thải từ động cơ đốt trong bao gồm: sử dụng nhiên liệu sinh học pha trộn như xăng E5, bổ sung phụ gia giúp quá trình cháy diễn ra triệt để hơn, và cải tiến cấu tạo động cơ nhằm tăng hiệu suất sử dụng nhiên liệu.
+
+\Cau{1}Chất nào sau đây trong dầu mỏ:
+
+\vspace{0.12cm}
+
+\begin{center}
+\begin{tabular}{@{}p{0.22\textwidth}p{0.22\textwidth}p{0.22\textwidth}p{0.22\textwidth}@{}}
+\choicecircle\quad Ankan
+&
+\choicecircle\quad Anken
+&
+\choicecircle\quad Ankin
+&
+\choicecircle\quad Alcohol
+\end{tabular}
+\end{center}
+
+\Cau{2}Đâu không phải biện pháp giảm thiểu khí thải môi trường
+
+\vspace{0.12cm}
+
+\begin{tabular}{@{}p{0.95\textwidth}@{}}
+\choicecircle\quad Hạn chế sử dụng xăng dầu, nhiên liệu \\[0.18cm]
+\choicecircle\quad Tăng nồng độ lưu huỳnh trong xăng \\[0.18cm]
+\choicecircle\quad Sử dụng chất phụ gia để tăng hiệu suất cháy, động cơ đốt \\[0.18cm]
+\choicecircle\quad Sử dụng xăng E5 giúp giảm thải ra môi trường
+\end{tabular}
+
+\Cau{3}Xét tính đúng sai của các phát biểu sau:
+
+\vspace{0.15cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.75}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{|p{0.72\textwidth}|c|c|}
+\hline
+\centering\textbf{\textcolor{AeckRed}{Mệnh đề}}
+&
+\textbf{\textcolor{AeckRed}{Đúng}}
+&
+\textbf{\textcolor{AeckRed}{Sai}}
+\tabularnewline
+\hline
+Gắn động cơ chuyển đổi $NO_x$ thành $N_2$ và $O_2$ & \choicecircle & \choicecircle \\
+\hline
+Khi cracking octane thành $2,2$-dimethylbutane thì chỉ số octan thấp hơn & \choicecircle & \choicecircle \\
+\hline
+Nồng độ lưu huỳnh càng cao thì càng ảnh hưởng tới môi trường & \choicecircle & \choicecircle \\
+\hline
+\end{tabular}
+\end{center}
+
+\Cau{4}Đâu là phương pháp được sử dụng trong văn bản:
+
+\vspace{0.12cm}
+
+\begin{center}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.42\textwidth}@{}}
+\choicecircle\quad Chưng cất phân đoạn
+&
+\choicecircle\quad Kết tinh
+\\[0.25cm]
+\choicecircle\quad Chiết
+&
+\choicecircle\quad Sắc ký cột
+\end{tabular}
+\end{center}
+
+\Cau{5}Dầu diesel (DO) có khối lượng riêng $0,82\,kg/L$, trong đó lưu huỳnh chiếm $0,25\%$ khối lượng. Khi đốt cháy, lưu huỳnh bị oxi hoá tạo thành khí $SO_2$. Một động cơ tiêu thụ $2000$ L dầu DO. Biết hiệu suất chuyển hoá lưu huỳnh thành $SO_2$ là $95\%$. Khối lượng khí $SO_2$ thải ra môi trường là \blankline{1.8cm} (kg).
+
+\newpage
+
+% =========================
+% VĂN BẢN 6
+% =========================
+
+\begin{center}
+{\bfseries\textcolor{AeckRed}{Văn bản 6: Vận tốc và gia tốc}}
+\end{center}
+
+Vận tốc và gia tốc của một chiếc xe chở dầu theo thời gian được đo đạc và thống kê trong hai bảng sau:
+
+\vspace{0.15cm}
+
+\begin{center}
+\begin{tabular}{cc}
+\begin{tabular}{|c|c|}
+\hline
+Thời gian (s) & Tốc độ (m/s) \\
+\hline
+1 & 1 \\ \hline
+2 & 2 \\ \hline
+3 & 3 \\ \hline
+4 & 4 \\ \hline
+5 & 5 \\ \hline
+6 & 6 \\ \hline
+7 & 7 \\ \hline
+8 & 8 \\ \hline
+9 & 9 \\ \hline
+10 & 10 \\ \hline
+11 & 11 \\ \hline
+12 & 12 \\ \hline
+13 & 13 \\ \hline
+14 & 14 \\ \hline
+15 & 15 \\ \hline
+16 & 16 \\ \hline
+17 & 17 \\ \hline
+18 & 18 \\ \hline
+19 & 19 \\ \hline
+20 & 20 \\ \hline
+\end{tabular}
+&
+\hspace{1.8cm}
+\begin{tabular}{|c|c|}
+\hline
+Thời gian (s) & Gia tốc $(m/s^2)$ \\
+\hline
+1 & 1,5 \\ \hline
+2 & 3 \\ \hline
+3 & 4,5 \\ \hline
+4 & 6 \\ \hline
+5 & 7,5 \\ \hline
+6 & 9 \\ \hline
+7 & 10,5 \\ \hline
+8 & 12 \\ \hline
+9 & 13,5 \\ \hline
+10 & 15 \\ \hline
+11 & 16,5 \\ \hline
+12 & 18 \\ \hline
+13 & 19,5 \\ \hline
+14 & 21 \\ \hline
+15 & 22,5 \\ \hline
+16 & 24 \\ \hline
+17 & 25,5 \\ \hline
+18 & 27 \\ \hline
+19 & 28,5 \\ \hline
+20 & 30 \\ \hline
+\end{tabular}
+\end{tabular}
+\end{center}
+
+Trong quá trình di chuyển, chiếc xe chở dầu gặp sự cố rò rỉ, các giọt dầu rơi xuống được thống kê theo hình sau:
+
+\begin{center}
+    \includegraphics[width=0.58\textwidth]{kh_vb6_bieudo.png}
+\end{center}
+
+\Cau{1}Dựa vào bảng giá trị đo được hãy cho tính gia tốc từ $T=5s$ đến $T=10s$:
+
+\vspace{0.12cm}
+
+\begin{tabular}{@{}p{0.95\textwidth}@{}}
+\choicecircle\quad $1,5\,m/s^2$ \\[0.18cm]
+\choicecircle\quad $2\,m/s^2$ \\[0.18cm]
+\choicecircle\quad $3\,m/s^2$ \\[0.18cm]
+\choicecircle\quad $5\,m/s^2$
+\end{tabular}
+
+\Cau{2}Dựa vào bảng giá trị đo được hãy cho tính vận tốc trung bình từ ...
+
+\vspace{0.12cm}
+
+\begin{tabular}{@{}p{0.95\textwidth}@{}}
+\choicecircle\quad $10\,m/s$ \\[0.18cm]
+\choicecircle\quad $15\,m/s$ \\[0.18cm]
+\choicecircle\quad $17,5\,m/s$ \\[0.18cm]
+\choicecircle\quad $20\,m/s$
+\end{tabular}
+
+\Cau{3}Cho các phát biểu sau về cách tính vận tốc tức thời tại $T=20s$, đâu là phát biểu đúng:
+
+\vspace{0.12cm}
+
+\begin{tabular}{@{}p{0.95\textwidth}@{}}
+\choicecircle\quad Đo khoảng cách nhỏ giọt từ $T=1s$ đến $T=20s$ rồi lấy khoảng cách chia thời gian ra vận tốc tức thời ở $T=20s$ \\[0.18cm]
+\choicecircle\quad Đo khoảng cách nhỏ giọt từ $T=15s$ đến $T=20s$ rồi lấy khoảng cách chia thời gian ra vận tốc tức thời ở $T=20s$ \\[0.18cm]
+\choicecircle\quad Đo khoảng cách nhỏ giọt từ $T=10s$ đến $T=20s$ rồi lấy khoảng cách chia thời gian ra vận tốc tức thời ở $T=20s$ \\[0.18cm]
+\choicecircle\quad Đo khoảng cách nhỏ giọt từ $T=19s$ đến $T=20s$ rồi lấy khoảng cách chia thời gian ra vận tốc tức thời ở $T=20s$
+\end{tabular}
+
+\Cau{4}Dựa vào biểu đồ đường đã cho, khi đường vận tốc có giá trị giảm ta gọi đó là gia tốc âm, vận tốc tăng ta gọi đó là gia tốc dương. Phát biểu nào dưới đây đúng?
+
+\vspace{0.12cm}
+
+\begin{tabular}{@{}p{0.95\textwidth}@{}}
+\choicecircle\quad Từ $T=10s$ đến $T=15s$, vật có gia tốc dương \\[0.18cm]
+\choicecircle\quad Từ $T=0s$ đến $T=10s$, vật có gia tốc âm \\[0.18cm]
+\choicecircle\quad Từ $T=15s$ đến $T=25s$, vật có gia tốc dương \\[0.18cm]
+\choicecircle\quad Từ $T=0s$ đến $T=25s$, vật có gia tốc âm
+\end{tabular}
+
+\Cau{5}Giả sử vật tiếp tục di chuyển từ $T=25s$ đến $T=30s$, vật tiếp tục di chuyển (vận tốc không đổi) thì đồ thị nào dưới đây biểu diễn đúng:
+
+\vspace{0.15cm}
+
+\begin{center}
+    \includegraphics[width=0.65\textwidth]{kh_vb6_cau5.png}
+\end{center}
+
+\newpage
+
+% =========================
+% VĂN BẢN 7
+% =========================
+
+\begin{center}
+{\bfseries\textcolor{AeckRed}{Văn bản 7: Y học hạt nhân}}
+\end{center}
+
+Trong y học hạt nhân, các đồng vị phóng xạ được sử dụng nhờ khả năng phát ra tia bức xạ mang năng lượng cao. Hai loại tia thường gặp là tia beta trừ $(\beta^-)$ và tia gamma $(\gamma)$. Năng lượng của các tia này được đo bằng đơn vị electron-volt (eV); trong điều trị, tia $\beta^-$ có năng lượng khoảng $300$ keV, còn tia $\gamma$ có thể đạt khoảng $600$ keV. Tia beta trừ là dòng electron phát ra từ hạt nhân nên có khả năng ion hoá mạnh khi đi qua vật chất, nhưng phạm vi truyền trong môi trường mô sống không lớn. Ngược lại, tia gamma là bức xạ điện từ, không mang điện, có khả năng truyền đi xa và xuyên qua nhiều lớp vật chất.
+
+Đồng vị I-131 được sử dụng trong điều trị một số bệnh liên quan đến tuyến giáp vì phát ra đồng thời cả tia $\beta^-$ và $\gamma$. Khi vào cơ thể, mức độ phóng xạ của đồng vị giảm dần theo thời gian do hai quá trình: phân rã vật lý của hạt nhân và sự đào thải sinh học ra khỏi cơ thể. Mối liên hệ giữa chu kì bán rã vật lý, chu kì đào thải sinh học và chu kì bán rã sinh học được biểu diễn qua công thức:
+\[
+\dfrac{1}{T_e}=\dfrac{1}{T_v}+\dfrac{1}{T_{sh}}
+\]
+Trong đó $T_v$ là chu kì bán rã vật lý và $T_{sh}$ là chu kì đào thải sinh học.
+
+Sự giảm phóng xạ theo thời gian tuân theo quy luật hàm mũ. Nếu gọi $H_0$ là độ phóng xạ ban đầu, thì tại thời điểm $t$, độ phóng xạ còn lại được tính bởi:
+\[
+H=H_0e^{-\ln2\frac{t}{T_e}}
+\]
+
+Trong môi trường bệnh viện, việc ứng dụng các đồng vị phóng xạ đòi hỏi tuân thủ nghiêm ngặt các nguyên tắc an toàn bức xạ. Không gian điều trị thường được bố trí riêng biệt, hạn chế sự tiếp xúc không cần thiết với người xung quanh. Nhân viên y tế khi chăm sóc bệnh nhân được hướng dẫn tổ chức thời gian làm việc hợp lý, giữ vị trí phù hợp trong phòng và sử dụng các phương tiện che chắn khi cần thiết. Bên cạnh đó, các quy trình theo dõi mức phóng xạ của bệnh nhân được thực hiện định kỳ nhằm đánh giá sự suy giảm phóng xạ theo thời gian và đảm bảo các điều kiện an toàn trước khi bệnh nhân rời khỏi khu vực điều trị.
+
+\Cau{1}Một bệnh nhân được điều trị bằng đồng vị phóng xạ I-131 có chu kì bán rã là $8$ ngày. Sau khi điều trị, độ phóng xạ đo được trong cơ thể bệnh nhân là $3000$ đơn vị. Theo quy định an toàn bức xạ, bệnh nhân chỉ được xuất viện khi độ phóng xạ trong cơ thể giảm xuống không vượt quá $700$ đơn vị. Sau ít nhất \blankline{1.8cm} ngày (làm tròn đến hàng đơn vị) thì bệnh nhân có thể xuất viện?
+
+\Cau{2}Xét tính đúng sai của các phát biểu sau:
+
+\vspace{0.15cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.75}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{|p{0.72\textwidth}|c|c|}
+\hline
+\centering\textbf{\textcolor{AeckRed}{Mệnh đề}}
+&
+\textbf{\textcolor{AeckRed}{Đúng}}
+&
+\textbf{\textcolor{AeckRed}{Sai}}
+\tabularnewline
+\hline
+Trong chụp X-Quang người ta thường sử dụng tia gamma & \choicecircle & \choicecircle \\
+\hline
+Trong thời gian điều trị phóng xạ, y tá nên đứng càng xa bệnh càng tốt & \choicecircle & \choicecircle \\
+\hline
+Y tá nên đứng càng xa bệnh nhân càng tốt & \choicecircle & \choicecircle \\
+\hline
+\end{tabular}
+\end{center}
+
+\Cau{3}Hãy kéo thả đáp án để hoàn thành câu sau.
+
+\vspace{0.12cm}
+
+\begin{center}
+\dragbox{ít hơn}\hspace{0.15cm}
+\dragbox{nhiều hơn}\hspace{0.15cm}
+\dragbox{chu kì bán rã vật lý}
+\end{center}
+
+Đồng vị phóng xạ ${}^{131}_{53}I$ có chu kỳ bán rã \answerbox{1.8cm} \answerbox{1.8cm}.
+
+\Cau{4}Hãy kéo thả các đáp án sau vào vị trí đúng.
+
+\vspace{0.12cm}
+
+\begin{center}
+\dragbox{cao hơn}\hspace{0.12cm}
+\dragbox{thấp hơn}\hspace{0.12cm}
+\dragbox{mạnh hơn}\hspace{0.12cm}
+\dragbox{yếu hơn}\hspace{0.12cm}
+\dragbox{ít nguy hiểm}\hspace{0.12cm}
+\dragbox{nhiều nguy hiểm}
+\end{center}
+
+Trong các phương pháp điều trị bằng phóng xạ, việc lựa chọn tia bức xạ là cần thiết. Tùy tia Beta trừ có năng lượng \answerbox{1.8cm} nhưng lại \answerbox{1.8cm} so với tia gamma. Vậy nên, tia Beta trừ gây \answerbox{1.8cm} hơn trong cơ thể bệnh nhân.
+\end{document}
