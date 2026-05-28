@@ -1,0 +1,325 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+\usepackage{mathptmx}
+\usepackage[left=1.5cm,right=1.5cm,top=1.5cm,bottom=1.5cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{arydshln} 
+\usepackage{multirow}
+
+% ======================================
+% CẤU HÌNH DÃN DÒNG & TOÁN HỌC
+% ======================================
+\setstretch{1.35} 
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\everymath{\displaystyle} 
+
+% ======================================
+% ĐỊNH NGHĨA MÀU SẮC
+% ======================================
+\definecolor{qcolor}{HTML}{8B0000} 
+\definecolor{lightgray}{RGB}{200, 200, 200} 
+
+% ======================================
+% LỆNH TẠO CÂU HỎI & ĐÁP ÁN
+% ======================================
+\newcommand{\cau}[1]{%
+    \par\vspace{0.4cm} 
+    \noindent\textbf{\textcolor{qcolor}{Câu #1 [NXT] : }}\hspace{0.1cm}%
+}
+
+\newcommand{\kq}{\par\vspace{0.1cm}\noindent\hfill \textcolor{qcolor}{\textbf{KQ:} \tikz[baseline=-0.3em] \node[draw=qcolor, dashed, rounded corners=4pt, minimum width=3.5cm, minimum height=0.8cm] {};}\par\vspace{0.2cm}}
+
+\newcommand{\choicefour}[4]{%
+\par\vspace{0.05cm}
+\noindent\begin{tabularx}{\textwidth}{@{}X X X X@{}}
+\textbf{\textcolor{qcolor}{A.}} \textcolor{black}{#1} & \textbf{\textcolor{qcolor}{B.}} \textcolor{black}{#2} & \textbf{\textcolor{qcolor}{C.}} \textcolor{black}{#3} & \textbf{\textcolor{qcolor}{D.}} \textcolor{black}{#4}
+\end{tabularx}\par
+}
+
+\newcommand{\choicetwo}[4]{%
+\par\vspace{0.05cm}
+\noindent\begin{tabularx}{\textwidth}{@{}X X@{}}
+\textbf{\textcolor{qcolor}{A.}} \textcolor{black}{#1} & \textbf{\textcolor{qcolor}{B.}} \textcolor{black}{#2}\\[0.15cm]
+\textbf{\textcolor{qcolor}{C.}} \textcolor{black}{#3} & \textbf{\textcolor{qcolor}{D.}} \textcolor{black}{#4}
+\end{tabularx}\par
+}
+
+\newcommand{\choiceone}[4]{%
+\par\vspace{0.05cm}
+\noindent\textbf{\textcolor{qcolor}{A.}} \textcolor{black}{#1}\\[0.1cm]
+\noindent\textbf{\textcolor{qcolor}{B.}} \textcolor{black}{#2}\\[0.1cm]
+\noindent\textbf{\textcolor{qcolor}{C.}} \textcolor{black}{#3}\\[0.1cm]
+\noindent\textbf{\textcolor{qcolor}{D.}} \textcolor{black}{#4}\par
+}
+
+% ======================================
+% THIẾT KẾ HEADER & FOOTER
+% ======================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{\textcolor{qcolor}{Thầy Nghiêm Xuân Tân}}}
+\fancyhead[R]{\textbf{\textcolor{qcolor}{Physics Class}}}
+\fancyfoot[L]{\textcolor{qcolor}{\LaTeX\ bởi Nguyễn Văn Hải}}
+\fancyfoot[C]{\textbf{\textcolor{qcolor}{\thepage}}} 
+\fancyfoot[R]{\textcolor{qcolor}{\textbf{Mã đề: 0227}}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\renewcommand{\headrule}{\vspace{-0.2cm}\hbox to\headwidth{\hss\color{qcolor}\rule{\paperwidth}{\headrulewidth}\hss}}
+\renewcommand{\footrule}{\hbox to\headwidth{\hss\color{qcolor}\rule{\paperwidth}{\footrulewidth}\hss}\vspace{0.15cm}}
+% Kẻ dòng mờ để làm tự luận ở phần III (Khoảng cách đã thu hẹp)
+\newcommand{\solidlines}[1]{%
+  \par\vspace{0.1cm}
+  \foreach \i in {1,...,#1} {
+    \noindent{\color{lightgray}\rule{\textwidth}{0.5pt}}\par
+    \vspace{0.35cm} % Khoảng cách dòng kẻ
+  }
+}
+\begin{document}
+
+% ======================================
+% TIÊU ĐỀ ĐỀ THI
+% ======================================
+\begin{center}
+\color{qcolor} 
+\begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}} c c }
+\textbf{SỞ GIÁO DỤC VÀ ĐÀO TẠO} & \textbf{KỲ THI THỬ TRƯỚC KỲ THI TỐT NGHIỆP} \\
+\textbf{TỈNH GIA LAI} & \textbf{TRUNG HỌC PHỔ THÔNG NĂM 2026} \\
+\textbf{ĐỀ CHÍNH THỨC} & \textbf{Môn thi: VẬT LÍ} \\
+\textit{(Đề thi có 4 trang)} & \textit{Thời gian làm bài: 50 phút; không kể thời gian phát đề}
+\end{tabular*}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{tabularx}{\textwidth}{@{}X r@{}}
+\textcolor{qcolor}{\textbf{Họ và tên thí sinh:} \dotfill} & \multirow{2}{*}{\textcolor{qcolor}{\fbox{\textbf{Mã đề thi: 0227}}}} \\
+\textcolor{qcolor}{\textbf{Số báo danh:} \dotfill} & \\
+\end{tabularx}
+\vspace{0.3cm}
+
+\noindent \textcolor{qcolor}{$\bullet$ \textbf{Cho biết:} $\pi \approx 3,14$; $T\text{(K)} = t(^\circ\text{C}) + 273$; $N_A = 6,02\cdot 10^{23}\text{ mol}^{-1}$; $R = 8,31\text{ J}\cdot\text{mol}^{-1}\cdot\text{K}^{-1}$; $1\text{ amu} = 931,5\text{ MeV}/c^2$.}\\
+\noindent \textcolor{qcolor}{$\bullet$ \textbf{Không làm tròn kết quả các phép trung gian.}}
+\vspace{0.3cm}
+
+% ======================================
+% PHẦN I
+% ======================================
+\noindent\textbf{\textcolor{qcolor}{PHẦN I. Thí sinh trả lời từ câu 1 đến câu 18. Mỗi câu hỏi thí sinh chỉ chọn một phương án.}}
+
+\cau{1} Một học sinh làm thí nghiệm tìm hiểu về sự biến đổi nội năng của một lượng khí. Bạn dùng một ống bơm xe đạp, bịt kín vòi bơm rồi đẩy pít-tông để nén khí thì nhận thấy thân ống bơm nóng lên, chứng tỏ nội năng của khí đã tăng. Nếu trong quá trình bơm, áp suất và thể tích khí biến đổi theo đồ thị bên và khí tỏa nhiệt ra bên ngoài $40\text{ J}$ thì nội năng khí tăng một lượng là bao nhiêu? Biết $1\text{ bar} = 10^5\text{ Pa}$.
+\begin{center}
+\includegraphics[width=0.45\textwidth]{anh1.png}
+\end{center}
+\choicefour{$140\text{ J}$.}{$20\text{ J}$.}{$180\text{ J}$.}{$220\text{ J}$.}
+
+\cau{2} Phát biểu nào sau đây nói về mô hình động học của các phân tử khí lí tưởng là sai?
+\choiceone{Các phân tử khí chuyển động hỗn loạn không ngừng, chuyển động càng nhanh thì nhiệt độ chất khí càng cao.}{Khi chuyển động hỗn loạn, các phân tử khí va chạm vào thành bình và gây áp suất lên thành bình.}{Giữa hai lần va chạm liên tiếp, các phân tử khí lí tưởng chuyển động thẳng biến đổi đều.}{Chất khí được cấu tạo từ những phân tử có kích thước rất nhỏ so với khoảng cách giữa chúng.}
+
+\cau{3} Một đoạn dây dẫn $AB$ được treo nằm ngang vào hai lực kế điện tử trong từ trường đều như hình bên. Đoạn dây $AB$ vuông góc với các đường sức từ, có chiều dài $10\text{ cm}$. Biết đoạn dây dẫn và dây treo không nhiễm từ, bỏ qua khối lượng dây treo. Khi chưa cho dòng điện qua đoạn dây, mỗi lực kế chỉ $0,30\text{ N}$. Khi cho dòng điện chạy qua đoạn dây có chiều từ $B$ đến $A$ với cường độ $4,50\text{ A}$ thì mỗi lực kế chỉ $0,33\text{ N}$. Cảm ứng từ của nam châm là
+\begin{center}
+\includegraphics[width=0.29\textwidth]{anh2.png}
+\end{center}
+\choicefour{$0,47\cdot 10^{-2}\text{ T}$.}{$0,13\cdot 10^{-2}\text{ T}$.}{$0,13\text{ T}$.}{$0,47\text{ T}$.}
+
+\cau{4} Hạt nhân bạc ($Ag$) có $47$ proton và $60$ neutron, hạt nhân bạc này được kí hiệu là
+\choicefour{$^{107}_{\ 60}Ag$.}{$^{47}_{60}Ag$.}{$^{60}_{47}Ag$.}{$^{107}_{\ 47}Ag$.}
+
+\cau{5} Giả sử có một dây dẫn thẳng dài vô hạn có dòng điện $I$ chạy qua theo phương vuông góc với mặt phẳng hình vẽ và có chiều từ trong ra ngoài. Hình vẽ nào dưới đây mô tả đúng các đường sức từ của dòng điện đó?
+\begin{center}
+\includegraphics[width=0.5\textwidth]{anh3.png}
+\end{center}
+\choicefour{Hình 2.}{Hình 4.}{Hình 3.}{Hình 1.}
+
+\cau{6} Cách nào sau đây không làm thay đổi nội năng của lượng khí trong một xilanh?
+\choiceone{Nén, dãn khí trong xilanh.}{Cho ánh sáng chiếu vào xilanh.}{Đẩy cho xilanh chuyển động nhanh dần.}{Dùng đèn cồn đốt nóng xilanh.}
+
+\cau{7} Cường độ dòng điện tức thời qua một điện trở thuần $R$ có dạng $i = I_0 \cos\omega t$ thì công suất tỏa nhiệt trung bình của điện trở $R$ là
+\choicefour{$\mathcal{P} = 2I_0^2 R$.}{$\mathcal{P} = \dfrac{I_0^2 R}{\sqrt{2}}$.}{$\mathcal{P} = I_0^2 R$.}{$\mathcal{P} = \dfrac{I_0^2 R}{2}$.}
+
+\cau{8} Khi phân tích một mẫu gỗ của cổ vật, người ta xác định được: $87,5\%$ số nguyên tử đồng vị phóng xạ $^{14}\text{C}$ có trong mẫu gỗ đã bị phân rã thành các nguyên tử $^{14}\text{N}$. Biết chu kỳ bán rã của $^{14}\text{C}$ là $5570$ năm. Tuổi của mẫu gỗ này bằng
+\choicefour{$5570$ năm.}{$16710$ năm.}{$1140$ năm.}{$44560$ năm.}
+
+\cau{9} Năng lượng tỏa ra của phản ứng nhiệt hạch: $^2_1\text{H} + ^3_1\text{H} \rightarrow ^4_2\text{He} + ^1_0\text{n}$ xấp xỉ $3,27\text{ MeV}$. Nếu $1\text{ g}$ $^2_1\text{H}$ tham gia phản ứng hết thì sẽ tỏa ra năng lượng là
+\choicefour{$7,87\cdot 10^{10}\text{ J}$.}{$4,92\cdot 10^{23}\text{ J}$.}{$9,84\cdot 10^{23}\text{ J}$.}{$15,7\cdot 10^{10}\text{ J}$.}
+
+\cau{10} Theo mô hình động học phân tử chất khí, phát biểu nào sau đây sai?
+\choiceone{Các phân tử khí chuyển động càng nhanh thì nhiệt độ chất khí càng cao.}{Các phân tử khí va chạm vào nhau và va chạm vào thành bình.}{Các phân tử khí ở cạnh nhau nên lực liên kết giữa chúng rất mạnh.}{Các phân tử khí chuyển động hỗn loạn, không ngừng.}
+
+\cau{11} Từ thông $\Phi$ qua một diện tích phẳng $S$ đặt trong từ trường đều $\vec{B}$ được xác định bởi: $\Phi = BS\cos\alpha$. Đại lượng $\alpha$ trong công thức này là góc hợp bởi
+\choiceone{vectơ cảm ứng từ $\vec{B}$ và vectơ pháp tuyến $\vec{n}$ của mặt phẳng chứa diện tích $S$.}{vectơ cảm ứng từ $\vec{B}$ và mặt phẳng chứa diện tích $S$.}{vectơ pháp tuyến $\vec{n}$ và phương thẳng đứng.}{chiều dòng điện cảm ứng và mặt phẳng diện tích $S$.}
+
+\cau{12} Phát biểu nào sau đây không đúng nguyên tắc an toàn phóng xạ?
+\choiceone{Cần sử dụng các tấm chắn nguồn phóng xạ đủ tốt.}{Đeo khẩu trang y tế khi tiếp xúc với nguồn phóng xạ.}{Giảm thiểu thời gian phơi nhiễm phóng xạ.}{Giữ khoảng cách đủ xa với nguồn phóng xạ.}
+
+\cau{13} Bên trong bóng đèn dây tóc có chứa khí trơ. Nhiệt độ của khí trong đèn khi đèn tắt bằng $25^\circ\text{C}$, khi đèn sáng bằng $323^\circ\text{C}$. Bỏ qua sự dãn nở của bóng đèn. Tỉ số áp suất khí trơ trong bóng đèn khi sáng và khi tắt bằng
+\choicefour{$1,5$.}{$2,0$.}{$12,9$.}{$10,8$.}
+
+\cau{14} Lực từ không phải là lực tương tác giữa
+\choiceone{một nam châm và một dòng điện.}{hai điện tích điểm đứng yên.}{hai dòng điện.}{hai nam châm.}
+
+\cau{15} Một tesla ($1\text{ T}$) là độ lớn cảm ứng từ của một từ trường đều mà khi ta đặt vào trong nó một dòng điện thẳng có cường độ $1\text{ ampe}$ vuông góc với các đường sức từ thì
+\choiceone{mỗi mét dài của dòng điện chịu tác dụng của một lực từ bằng $1\text{ niutơn}$.}{mỗi xentimét dài của dòng điện chịu tác dụng của một lực từ bằng $1\text{ niutơn}$.}{mỗi mét dài của dòng điện chịu tác dụng của một lực từ bằng $1\text{ miliniutơn}$.}{mỗi milimét dài của dòng điện chịu tác dụng của một lực từ bằng $1\text{ niutơn}$.}
+
+\cau{16} Đồ thị phụ thuộc của năng lượng liên kết riêng ($E_{lkr}$) của hạt nhân một số nguyên tử theo số khối ($A$) được cho trên hình vẽ. Căn cứ vào thông tin trên đồ thị, trật tự nguyên tử nào sau đây được sắp xếp theo thứ tự tăng dần về độ bền vững của hạt nhân?
+\begin{center}
+\includegraphics[width=0.45\textwidth]{anh4.png}
+\end{center}
+\choiceone{$^{89}\text{Y}, ^{160}\text{Dy}, ^{180}\text{Hf}$.}{$^{197}\text{Au}, ^{126}\text{Te}, ^{89}\text{Y}$.}{$^{56}\text{Fe}, ^{35}\text{Cl}, ^{14}\text{N}$.}{$^{6}\text{Li}, ^{89}\text{Y}, ^{141}\text{Pr}$.}
+
+\cau{17} Nhiệt dung riêng của một chất là nhiệt lượng cần
+\choiceone{truyền cho $1$ lít chất đó để làm cho nhiệt độ của nó tăng thêm $1^\circ\text{C}$.}{cung cấp để đun nóng $1\text{ kg}$ chất đó trong khoảng thời gian $1$ giây.}{truyền cho $1\text{ m}^3$ chất đó để làm cho nhiệt độ của nó tăng thêm $1^\circ\text{C}$.}{truyền cho $1\text{ kg}$ chất đó để làm cho nhiệt độ của nó tăng thêm $1^\circ\text{C}$.}
+
+\cau{18} Một đoạn dây dẫn thẳng dài $MN = 10\text{ cm}$ đặt nằm ngang trong từ trường đều có $B = 0,8\text{ T}$. Dòng điện $I = 0,75\text{ A}$ có chiều hướng từ Tây sang Đông, cảm ứng từ nằm ngang hướng về phía Bắc. Lực từ $\vec{F}$ tác dụng lên đoạn dây dẫn thẳng $MN$ có chiều và độ lớn là
+\choiceone{thẳng đứng hướng xuống và $F = 0,06\text{ N}$.}{hướng về phía Tây và $F = 0,03\text{ N}$.}{hướng về phía Nam và $F = 0,03\text{ N}$.}{thẳng đứng hướng lên và $F = 0,06\text{ N}$.}
+
+
+% ======================================
+% PHẦN II
+% ======================================
+\noindent\textbf{PHẦN II. Thí sinh trả lời từ câu 1 đến câu 4. Trong mỗi ý a), b), c), d) ở mỗi câu, thí sinh chọn đúng hoặc sai.}
+
+\cau{1} Hình bên là sơ đồ nguyên lí của phương án đo lực từ và cảm ứng từ bằng lực kế điện tử. Khung dây chữ nhật được quấn $4$ vòng, treo vào lực kế điện tử. Cạnh dưới của khung dây dài $l = 4\text{ cm}$ nằm ngang trong lòng một nam châm vĩnh cửu và song song với các mặt của nam châm. Trục đối xứng của nam châm đi qua tâm của thước đo góc. Chưa cho dòng điện vào khung dây, nhấn nút TARE (nút trừ bì) để số chỉ của lực kế về $0$. Tiếp theo, cho dòng điện có cường độ $4,48\text{ A}$ vào khung dây thì lực kế chỉ thị $68,9\text{ mN}$.
+\begin{center}
+\includegraphics[width=0.45\textwidth]{anh5.png}
+\end{center}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\arrayrulecolor{qcolor}
+\setlength{\dashlinedash}{3pt}
+\setlength{\dashlinegap}{3pt}
+\begin{tabular}{:p{0.75\textwidth}:c:c:}
+\hdashline
+\centering\textbf{\textcolor{qcolor}{Mệnh đề}} & \textbf{\textcolor{qcolor}{Đúng}} & \textbf{\textcolor{qcolor}{Sai}} \\
+\hdashline
+\textbf{\textcolor{qcolor}{a)}} Nam châm vĩnh cửu trên gây ra một từ trường đều trong lòng nó, các đường sức từ vuông góc với các mặt của nam châm, có chiều từ cực Bắc sang cực Nam của nam châm. & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{b)}} Khi đoạn dây thẳng có tổng chiều dài $L$ mang dòng điện $I$ đặt vuông góc với các vectơ cảm ứng từ $\vec{B}$ thì chịu tác dụng của một lực từ $F$. Cảm ứng từ của nam châm là $B = \dfrac{F\cdot L}{I}$. & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{c)}} Cảm ứng từ của nam châm xấp xỉ $96,1\text{ mT}$. & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{d)}} Nếu xoay nam châm quanh trục thêm một góc $30^\circ$ thì số chỉ lực kế là $59,7\text{ mN}$. & & \\
+\hdashline
+\end{tabular}
+
+\end{center}
+
+\cau{2} Một học sinh tiến hành thí nghiệm xác định nhiệt nóng chảy riêng của nước đá theo các bước cụ thể sau:\\
+\textbf{Bước 1:} Lấy viên nước đá có khối lượng $m_1\text{ (kg)}$ từ tủ lạnh và chuẩn bị một nhiệt lượng kế không hấp thụ nhiệt chứa $m_2\text{ (kg)}$ nước; đo nhiệt độ ban đầu $t_1$ của nước đá và nhiệt độ $t_2$ của nước trong nhiệt lượng kế bằng nhiệt kế có độ nhạy cao. Ghi vào bảng kết quả thí nghiệm.\\
+\textbf{Bước 2:} Cho viên nước đá vào bình nhiệt lượng kế.\\
+\textbf{Bước 3:} Khi nước đá tan hoàn toàn, lấy nhiệt độ đo nhiệt độ $t$ của nước và ghi vào bảng kết quả thí nghiệm.\\
+Biết nhiệt dung riêng của nước đá và của nước lần lượt là $2100\text{ J/(kg}\cdot\text{K)}$ và $4200\text{ J/(kg}\cdot\text{K)}$. Bỏ qua sự trao đổi nhiệt giữa nước, nước đá với môi trường xung quanh và nhiệt lượng kế.
+\begin{center}
+\includegraphics[width=0.7\textwidth]{anh6.png}
+\end{center}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\arrayrulecolor{qcolor}
+\begin{tabular}{:p{0.75\textwidth}:c:c:}
+\hdashline
+\centering\textbf{\textcolor{qcolor}{Mệnh đề}} & \textbf{\textcolor{qcolor}{Đúng}} & \textbf{\textcolor{qcolor}{Sai}} \\
+\hdashline
+\textbf{\textcolor{qcolor}{a)}} Nhiệt nóng chảy riêng của nước đá được tính bằng đơn vị jun trên kilôgam ($\text{J/kg}$). & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{b)}} Nước đá đã truyền nhiệt lượng cho nước. & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{c)}} Nhiệt lượng viên nước đá thu vào để nóng chảy hoàn toàn ở $0^\circ\text{C}$ là $3150\text{ J}$. & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{d)}} Nhiệt nóng chảy riêng của nước đá tính được từ bảng số liệu trên là $336\text{ kJ/kg}$. & & \\
+\hdashline
+\end{tabular}
+
+\end{center}
+
+\cau{3} Một nhóm học sinh tìm hiểu về mối liên hệ giữa áp suất của một khối khí xác định theo nhiệt độ và thể tích của nó. Họ đã chuẩn bị các dụng cụ: Xilanh khí nối với áp kế; cảm biến nhiệt độ đo nhiệt độ khí; tay quay để làm di chuyển pít-tông (hình vẽ). Khi quay tay quay để pít-tông nén khí thì thấy số chỉ của áp kế và cảm biến nhiệt đều tăng.
+\begin{center}
+\includegraphics[width=0.45\textwidth]{anh7.png}
+\end{center}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\arrayrulecolor{qcolor}
+\begin{tabular}{:p{0.75\textwidth}:c:c:}
+\hdashline
+\centering\textbf{\textcolor{qcolor}{Mệnh đề}} & \textbf{\textcolor{qcolor}{Đúng}} & \textbf{\textcolor{qcolor}{Sai}} \\
+\hdashline
+\textbf{\textcolor{qcolor}{a)}} Các phân tử khí chuyển động hỗn loạn không ngừng và va chạm với nhau và va chạm với thành xilanh gây ra áp suất lên thành xilanh. & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{b)}} Động năng trung bình của các phân tử khí tăng tỉ lệ với nhiệt độ tuyệt đối của khí. & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{c)}} Áp suất khí trong bình tăng tỉ lệ thuận với nhiệt độ tuyệt đối của khí. & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{d)}} Biết $1\text{ bar} = 10^5\text{ Pa}$. Khi khí trong xilanh bị nén đến thể tích $3,0\text{ mL}$, nhiệt độ khí là $23,5^\circ\text{C}$ thì số chỉ áp kế là $1,24\text{ bar}$. Số mol khí trong xilanh xấp xỉ $1,51\cdot 10^{-4}\text{ mol}$. & & \\
+\hdashline
+\end{tabular}
+
+\end{center}
+
+\cau{4} Đồng vị phóng xạ $^{131}_{\ \ 53}\text{I}$ có chu kì bán rã $8$ ngày đêm được dùng để điều trị các bệnh về tuyến giáp. Sau khi uống vào cơ thể, tuyến giáp của người bệnh hấp thụ mạnh $^{131}_{\ \ 53}\text{I}$, đồng vị này phân rã $\beta^-$ và biến thành hạt nhân Xe. Tia $\beta^-$ có tác dụng tiêu diệt các tế bào bệnh. Một bệnh nhân uống một liều phóng xạ $^{131}_{\ \ 53}\text{I}$ có độ phóng xạ ban đầu $36,0\text{ mCi}$. Bệnh nhân có thể xuất viện khi độ phóng xạ của $^{131}_{\ \ 53}\text{I}$ giảm xuống còn $30,0\text{ mCi}$. Bỏ qua sự bài tiết hay hấp thụ thêm $^{131}_{\ \ 53}\text{I}$ trong khoảng thời gian này.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\arrayrulecolor{qcolor}
+\begin{tabular}{:p{0.75\textwidth}:c:c:}
+\hdashline
+\centering\textbf{\textcolor{qcolor}{Mệnh đề}} & \textbf{\textcolor{qcolor}{Đúng}} & \textbf{\textcolor{qcolor}{Sai}} \\
+\hdashline
+\textbf{\textcolor{qcolor}{a)}} Sau khi uống $60$ giờ, bệnh nhân có thể được xuất viện. & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{b)}} Tia phóng xạ $\beta^-$ có bản chất là hạt positron ($^0_{+1}e$). & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{c)}} Cứ sau $8$ ngày đêm thì một nửa số hạt nhân $^{131}_{\ \ 53}\text{I}$ hiện có bị phân rã. & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{d)}} Sau $48$ giờ kể từ lúc mới uống khối lượng $^{131}_{\ \ 53}\text{I}$ còn lại trong người bệnh nhân là $0,43\ \mu\text{g}$. & & \\
+\hdashline
+\end{tabular}
+
+\arrayrulecolor{black}
+\end{center}
+
+
+% ======================================
+% PHẦN III
+% ======================================
+\noindent\textbf{PHẦN III. Thí sinh trả lời từ câu 1 đến câu 6.}
+
+\cau{1} Trong thành phần sữa bò có chứa potassium với nồng độ $2\text{ g/l}$. Trong đó có $0,0117\%$ là đồng vị phóng xạ potassium $^{40}\text{K}$ với chu kì bán rã là $1,25\cdot 10^9$ năm. Độ phóng xạ của đồng vị phóng xạ $^{40}\text{K}$ có trong $2$ lít sữa bò là bao nhiêu becoren (làm tròn kết quả đến chữ số hàng đơn vị)?
+
+\kq
+
+\cau{2} Hạt nhân $^{235}_{\ \ 92}\text{U}$ hấp thụ một neutron nhiệt rồi vỡ ra thành hai hạt nhân $^{95}\text{X}$ và $^{138}_{\ \ 55}\text{Cs}$ kèm theo giải phóng một số hạt neutron mới. Số hạt nucleon không mang điện trong hạt nhân $\text{X}$ là bao nhiêu (làm tròn kết quả đến chữ số hàng đơn vị)?
+
+\kq
+
+\cau{3} Một lượng khí lí tưởng có động năng trung bình của các phân tử là $6,29\cdot 10^{-21}\text{ J}$. Biết hằng số Boltzmann $k = 1,38\cdot 10^{-23}\text{ J/K}$. Nhiệt độ của lượng khí này trong thang Celsius là bao nhiêu độ (làm tròn kết quả đến chữ số hàng đơn vị)?
+
+\kq
+
+\cau{4} Một khung dây dẫn hình vuông, độ dài mỗi cạnh là $l = 20\text{ cm}$ đặt trong một từ trường đều $\vec{B}$ có phương vuông góc với mặt phẳng của khung, chiều hướng từ ngoài vào trong và có độ lớn cảm ứng từ $B = 0,5\text{ T}$ (hình vẽ). Trong khoảng thời gian $\Delta t = 0,05\text{ s}$, khung dây bị kéo dãn tại hai đỉnh của nó để tạo thành một hình thoi. Biết góc ở đỉnh hình thoi tạo thành là $\theta = 120^\circ$. Điện trở của khung dây $R = 5\ \Omega$. Cường độ dòng điện cảm ứng trung bình xuất hiện trong khung dây xấp xỉ bằng bao nhiêu miliampe (làm tròn kết quả đến chữ số hàng phần mười)?
+\begin{center}
+\includegraphics[width=0.45\textwidth]{anh8.png}
+\end{center}
+
+\kq
+
+\cau{5} Khi truyền nhiệt lượng cho khối khí trong một xilanh hình trụ, khí dãn nở đẩy pít-tông làm thể tích khối khí tăng thêm $7$ lít. Biết áp suất của khối khí là $3\cdot 10^5\text{ Pa}$ và không đổi trong quá trình dãn nở. Biết rằng trong quá trình này, nội năng của khối khí giảm đi $1020\text{ J}$. Nhiệt lượng cung cấp cho khối khí là bao nhiêu kilôjun (viết kết quả đến chữ số hàng phần trăm)?
+
+\kq
+
+\cau{6} Một học sinh sử dụng bình giữ nhiệt có chức năng hiển thị nhiệt độ, dung tích $1000\text{ mL}$. Vào một buổi sáng, học sinh rót nước nóng vào bình để mang đi học. Trong thời gian học, học sinh này đã sử dụng nên chỉ còn lại một ít nước trong bình, bình hiển thị nhiệt độ là $84^\circ\text{C}$. Học sinh này lấy nước nguội $24^\circ\text{C}$ đổ thêm vào bình để được $320\text{ mL}$ nước ở $39^\circ\text{C}$. Biết nước có nhiệt dung riêng là $4200\text{ J/(kg}\cdot\text{K)}$. Khối lượng riêng của nước xem như không đổi khi thay đổi nhiệt độ. Coi rằng chỉ có sự trao đổi nhiệt giữa nước nóng và nước nguội. Lượng nước nguội đổ thêm vào bình là bao nhiêu mililít (viết kết quả đến chữ số hàng đơn vị)?
+
+\kq
+
+\vspace{0.8cm}
+\begin{center}
+\textit{-- HẾT --}\\
+\textit{- Thí sinh không được sử dụng tài liệu.}\\
+\textit{- Giám thị không giải thích gì thêm.}
+\end{center}
+
+\end{document}
