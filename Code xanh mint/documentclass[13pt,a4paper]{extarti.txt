@@ -1,0 +1,315 @@
+\documentclass[13pt,a4paper]{extarticle}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+\usepackage{mathptmx}
+\usepackage[a4paper,top=1.4cm,bottom=1.6cm,left=1.35cm,right=1.35cm,headsep=0.3cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{colortbl} 
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{multirow}
+
+% ================= CẤU HÌNH DÃN DÒNG & TOÁN HỌC =================
+\setstretch{1.3} % Dãn dòng thoáng để phân số không bị dít
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\everymath{\displaystyle} % Ép tất cả công thức to, dấu tích phân cực rõ
+
+% ================= MÀU CHỦ ĐẠO =================
+\definecolor{tealmain}{RGB}{18,148,160}
+\definecolor{teallight}{RGB}{205,238,241}
+\definecolor{tealwater}{RGB}{36,160,170}
+\definecolor{darkteal}{RGB}{10,100,110}
+
+% ================= HEADER FOOTER =================
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Chân trang hiển thị số trang và mã đề màu xanh ngọc
+\fancyfoot[R]{\small\textcolor{tealmain}{Mã đề thi: 0222 - Trang \thepage /4}}
+
+% ================= LỆNH DÙNG CHUNG =================
+\newcommand{\parttitle}[2]{%
+\vspace{0.2cm}
+\noindent\textbf{\textcolor{tealmain}{#1}}\ {\color{tealmain}#2}
+}
+
+\newcommand{\q}[1]{%
+\vspace{0.15cm}
+\noindent\textbf{\textcolor{tealmain}{Câu #1:}}\quad%
+}
+
+% A, B, C, D đổi màu xanh ngọc, nội dung màu đen
+\newcommand{\choicefour}[4]{%
+\par\vspace{0.05cm}
+\noindent\begin{tabularx}{\textwidth}{@{}X X X X@{}}
+\textbf{\textcolor{tealmain}{A.}} \textcolor{black}{#1} & \textbf{\textcolor{tealmain}{B.}} \textcolor{black}{#2} & \textbf{\textcolor{tealmain}{C.}} \textcolor{black}{#3} & \textbf{\textcolor{tealmain}{D.}} \textcolor{black}{#4}
+\end{tabularx}\par
+}
+
+\newcommand{\choicetwo}[4]{%
+\par\vspace{0.05cm}
+\noindent\begin{tabularx}{\textwidth}{@{}X X@{}}
+\textbf{\textcolor{tealmain}{A.}} \textcolor{black}{#1} & \textbf{\textcolor{tealmain}{B.}} \textcolor{black}{#2}\\[0.15cm]
+\textbf{\textcolor{tealmain}{C.}} \textcolor{black}{#3} & \textbf{\textcolor{tealmain}{D.}} \textcolor{black}{#4}
+\end{tabularx}\par
+}
+
+\newcommand{\choiceone}[4]{%
+\par\vspace{0.05cm}
+\noindent\textbf{\textcolor{tealmain}{A.}} \textcolor{black}{#1}\\[0.1cm]
+\noindent\textbf{\textcolor{tealmain}{B.}} \textcolor{black}{#2}\\[0.1cm]
+\noindent\textbf{\textcolor{tealmain}{C.}} \textcolor{black}{#3}\\[0.1cm]
+\noindent\textbf{\textcolor{tealmain}{D.}} \textcolor{black}{#4}\par
+}
+
+\newcommand{\img}[2][0.35\textwidth]{%
+\begin{center}
+\includegraphics[width=#1]{#2}
+\end{center}
+}
+
+% Dòng kẻ mảnh liền mờ cho phần Trả lời ngắn
+\newcommand{\solidlines}[1]{%
+  \par\vspace{0.15cm}
+  \foreach \i in {1,...,#1} {
+    \noindent{\color{tealmain!40}\rule{\textwidth}{0.5pt}}\par
+    \vspace{0.4cm}
+  }
+}
+
+\begin{document}
+
+% ================= ĐẦU TRANG =================
+\noindent
+\begin{minipage}[t]{0.42\textwidth}
+\centering\color{tealmain}
+\textbf{\large SỞ GIÁO DỤC VÀ ĐÀO TẠO\\HƯNG YÊN}\\[0.1cm]
+\textbf{\large ĐỀ CHÍNH THỨC}\\[0.1cm]
+\textit{\small (Đề có 04 trang)}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.55\textwidth}
+\centering\color{tealmain}
+\textbf{\Large KỲ THI THỬ TỐT NGHIỆP THPT LẦN 2}\\[0.1cm]
+\textbf{\large NĂM HỌC 2025-2026}\\[0.1cm]
+\textbf{\large Môn: VẬT LÍ}\\[0.1cm]
+\textit{\small Thời gian làm bài 50 phút, không kể thời gian phát đề}
+\end{minipage}
+
+\vspace{0.4cm}
+
+\begingroup\color{tealmain}
+\noindent
+\begin{tabularx}{\textwidth}{@{}X r@{}}
+\textbf{Họ tên:} \dotfill & \multirow{2}{*}{\setlength{\fboxsep}{6pt}\fcolorbox{tealmain}{white}{\textbf{\textcolor{tealmain}{Mã đề 0222}}}} \\
+\textbf{Số báo danh:} \dotfill & \\
+\end{tabularx}
+
+\vspace{0.25cm}
+\noindent \textbf{+ Cho biết:} $\mathbf{T (K) = t (^\circ C) + 273, R = 8,31\text{ J/mol.K}, N_A = 6,02.10^{23}\text{ hạt/mol}; g = 10\text{ m/s}^2}$\\
+\textbf{+ Không làm tròn} kết quả các phép tính trung gian.
+
+\vspace{0.15cm}
+\noindent\rule{\textwidth}{1.2pt}
+\endgroup
+
+% ================= PHẦN I =================
+\parttitle{PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.}{Thí sinh trả lời từ câu 1 đến câu 18. Mỗi câu hỏi thí sinh chỉ chọn một phương án.}
+
+\q{1} Năng lượng được sử dụng trong các lò phản ứng hạt nhân của các nhà máy điện hạt nhân hiện nay trên thế giới là năng lượng của
+\choicetwo{phản ứng phân hạch.}{phản ứng nhiệt hạch.}{phóng xạ hạt nhân.}{phản ứng hóa học.}
+
+\q{2} Hạt nhân ${}_{94}^{239}\text{Pu}$ có
+\choicetwo{94 proton và 239 neutron.}{145 proton và 94 electron.}{145 proton và 94 neutron.}{94 proton và 145 neutron.}
+
+\q{3} Gọi p, V, T và n lần lượt là áp suất, thể tích, nhiệt độ tuyệt đối và mật độ phân tử của một khối khí lí tưởng xác định. Khi làm nóng đẳng áp khối khí lí tưởng, tỉ số nào sau đây không đổi?
+\choicefour{$\dfrac{n}{p}$}{n.T}{$\dfrac{n}{T}$}{$\dfrac{p}{T}$}
+
+\q{4} Một vòng dây hình vuông có cạnh dài 4 cm, đặt trong từ trường đều có cảm ứng từ $B = 4.10^{-5}\text{ T}$, mặt phẳng vòng dây tạo với các đường sức từ một góc $60^\circ$. Từ thông qua mặt phẳng vòng dây có độ lớn là
+\choicefour{$5,54.10^{-8}\text{ Wb}$.}{$6,4.10^{-8}\text{ Wb}$.}{$3,2.10^{-8}\text{ Wb}$.}{$11,1.10^{-8}\text{ Wb}$.}
+
+\q{5} Nếu nhiệt độ của một lượng khí lí tưởng đơn nguyên tử tăng từ $27^\circ C$ lên $87^\circ C$ thì động năng trung bình của các phân tử khí tăng lên bao nhiêu lần?
+\choicefour{3,2 lần.}{1,2 lần.}{1,24 lần.}{1,44 lần.}
+
+\q{6} Một học sinh dùng một kim nam châm đặt gần một dây dẫn thẳng dài mang dòng điện I để tìm hiểu về chiều đường sức từ của dòng điện thẳng, sau đó biểu diễn bằng hình vẽ.
+
+\img[0.8\textwidth]{cau6.png}
+
+Hình nào sau đây thể hiện đúng hướng của kim nam châm?
+\choicefour{Hình 1.}{Hình 3.}{Hình 4.}{Hình 2.}
+
+\q{7} Bỏ một lượng nước đá vào cốc thủy tinh đựng nước, sau một lúc ta thấy nước bám vào thành ngoài của cốc. Hiện tượng này là do
+\choiceone{nước bị hóa hơi khi tiếp xúc với cốc.}{hơi nước kết tinh bám vào thành ngoài cốc.}{nước từ trong cốc ngấm ra thành ngoài cốc.}{hơi nước ngưng tụ bám vào thành ngoài cốc.}
+
+\q{8} Trong hệ tọa độ (p, V), đường đẳng tích là
+\choiceone{nửa đường thẳng song song với trục Op.}{đường hyperbol.}{đường thẳng có đường kéo dài đi qua gốc tọa độ.}{nửa đường thẳng song song với trục OV.}
+
+\q{9} Khi nói về khí lí tưởng, phát biểu nào sau đây là \textbf{sai}?
+\choiceone{Khối lượng các phân tử khí có thể bỏ qua.}{Va chạm của các phân tử khí với nhau và với thành bình là va chạm đàn hồi.}{Các phân tử khí được coi là chất điểm, không tương tác với nhau khi chưa va chạm.}{Thể tích của các phân tử khí rất nhỏ, có thể bỏ qua.}
+
+\q{10} Để hạ điện áp hiệu dụng từ 22 kV xuống 220 V người ta dùng máy biến áp. Phát biểu nào sau đây về máy biến áp là \textbf{sai}?
+\choiceone{Số vòng dây cuộn thứ cấp nhỏ hơn cuộn sơ cấp.}{Máy có hệ số hạ áp là 100 lần.}{Máy có tác dụng làm giảm tần số điện áp xoay chiều.}{Máy hoạt động nhờ hiện tượng cảm ứng điện từ.}
+
+\q{11} Khi nhiệt độ một vật tăng $1^\circ C$ trong thang nhiệt độ Celsius thì nhiệt độ của nó
+\choiceone{tăng 1 K trong thang nhiệt độ Kelvin.}{giảm 1 K trong thang nhiệt độ Kelvin.}{tăng 274 K trong thang nhiệt độ Kelvin.}{giảm 274 K trong thang nhiệt độ Kelvin.}
+
+\q{12} Một đoạn dây dẫn thẳng dài mang dòng điện đặt dọc trục Ox sao cho chiều dòng điện ngược chiều dương của trục Ox trong từ trường có cảm ứng từ hướng theo chiều dương của trục Oy (hình vẽ). Lực từ tác dụng lên đoạn dây dẫn đó có hướng
+
+\img[0.35\textwidth]{cau12.png}
+
+\choiceone{theo chiều âm của trục Oz.}{theo chiều dương của trục Ox.}{theo chiều âm của trục Ox.}{theo chiều dương của trục Oz.}
+
+\q{13} Điện áp giữa hai cực một vôn kế là $u = 100\sqrt{2}\cos(100\pi t)\text{ (V)}$ thì số chỉ của vôn kế là
+\choicefour{100 V.}{$100\sqrt{2}\text{ V}$.}{$100\pi\text{ V}$.}{50 V.}
+
+\q{14} Nhiệt lượng cần cung cấp cho 1 kg một chất để nóng chảy hoàn toàn ở nhiệt độ nóng chảy được gọi là
+\choicefour{nhiệt nóng chảy.}{nhiệt hóa hơi riêng.}{nhiệt dung riêng.}{nhiệt nóng chảy riêng.}
+
+\q{15} Phát biểu nào sau đây là \textbf{sai} khi nói về nội năng của vật?
+\choiceone{Khi nhiệt độ của khí lí tưởng thay đổi thì nội năng của khối khí thay đổi.}{Quá trình thực hiện công có sự chuyển hóa từ dạng năng lượng khác sang nội năng.}{Khi thể tích của khí lí tưởng thay đổi thì nội năng của khối khí thay đổi.}{Nội năng phụ thuộc vào nhiệt độ và thể tích của vật.}
+
+\q{16} Mỗi hạt nhân có độ hụt khối là $\Delta m$ và số khối là A. Hạt nhân có mức độ bền vững nhất khi đại lượng nào dưới đây có giá trị nhỏ nhất?
+\choicefour{A.}{$\dfrac{\Delta m}{A}$.}{$\dfrac{A}{\Delta m}$.}{$\Delta m$.}
+
+\q{17} Khi nói về sóng điện từ phát biểu nào sau đây là đúng?
+\choiceone{Sóng điện từ có thể là sóng dọc hoặc sóng ngang.}{Khi truyền trong chân không, sóng điện từ không mang năng lượng.}{Tốc độ truyền sóng điện từ phụ thuộc vào môi trường.}{Sóng điện từ luôn lan truyền với tốc độ $c = 3.10^8\text{ m/s}$.}
+
+\q{18} Trong hình bên, nguồn phóng xạ S phát ra các tia phóng xạ. Cho các tia phóng xạ bay vào trong từ trường đều theo phương vuông góc với các đường sức từ. Quỹ đạo chuyển động của các tia phóng xạ được mô tả theo các đường (1), (2) và (3). Các tia phóng xạ (1), (2), (3) tương ứng là
+
+\img[0.4\textwidth]{cau18.png}
+
+\choicetwo{$\beta^-, \gamma, \alpha$.}{$\beta^-, \alpha, \gamma$.}{$\alpha, \gamma, \beta^-$.}{$\alpha, \beta^-, \gamma$.}
+
+\newpage
+% ================= PHẦN II =================
+\parttitle{PHẦN II. Câu trắc nghiệm đúng sai.}{Thí sinh trả lời từ câu 1 đến câu 4. Trong mỗi ý a), b), c), d) ở mỗi câu, thí sinh chọn đúng hoặc sai.}
+
+\q{1} Hạt nhân ${}_{92}^{238}\text{U}$ sau một chuỗi các quá trình phóng xạ $\alpha$ và $\beta^-$ liên tiếp biến đổi thành hạt nhân ${}_{82}^{206}\text{Pb}$ theo phương trình chuỗi phản ứng: ${}_{92}^{238}\text{U} \rightarrow {}_{82}^{206}\text{Pb} + x{}_{2}^{4}\text{He} + y{}_{-1}^{0}\text{e}$. Trong đó, $x$ và $y$ lần lượt là số lần phóng xạ $\alpha$ và $\beta^-$ trong chuỗi phóng xạ. Trong một mẫu quặng uranium, người ta thấy có ${}_{82}^{206}\text{Pb}$ cùng với ${}_{92}^{238}\text{U}$. Biết rằng toàn bộ ${}_{82}^{206}\text{Pb}$ được tạo ra có nguồn gốc từ uranium và không bị thất thoát vào môi trường. Chu kì bán rã của ${}_{92}^{238}\text{U}$ là 4,47 tỉ năm.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{tealmain}
+\begin{tabular}{|p{0.75\textwidth}|c|c|}
+\hline
+\centering\textbf{\textcolor{tealmain}{Mệnh đề}} & \textbf{\textcolor{tealmain}{Đúng}} & \textbf{\textcolor{tealmain}{Sai}} \\
+\hline
+\textcolor{tealmain}{\textbf{a)}} \textcolor{black}{Quá trình phóng xạ ${}_{92}^{238}\text{U}$ là phản ứng hạt nhân thu năng lượng.} & & \\
+\hline
+\textcolor{tealmain}{\textbf{b)}} \textcolor{black}{$x = 8, y = 6$.} & & \\
+\hline
+\textcolor{tealmain}{\textbf{c)}} \textcolor{black}{Sau thời gian 1,34 tỉ năm tỉ lệ khối lượng ${}_{82}^{206}\text{Pb}$ và ${}_{92}^{238}\text{U}$ trong mẫu quặng xấp xỉ bằng 0,2.} & & \\
+\hline
+\textcolor{tealmain}{\textbf{d)}} \textcolor{black}{Gọi $\Delta t$ là khoảng thời gian để số hạt nhân ${}_{92}^{238}\text{U}$ của lượng chất phóng xạ giảm đi e lần so với số nguyên tử ban đầu (e là cơ số của lôga tự nhiên với $\ln e = 1$). Sau khoảng thời gian $0,51\Delta t$ chất phóng xạ ${}_{92}^{238}\text{U}$ còn lại xấp xỉ 60\% lượng ban đầu.} & & \\
+\hline
+\end{tabular}
+\arrayrulecolor{black}
+\end{center}
+
+\q{2} Khi tìm hiểu về sự chuyển thể của nước học sinh nhận thấy trong quá trình nóng chảy, nhiệt độ của nước đá không đổi và nhiệt dung riêng của nước ở thể rắn nhỏ hơn nhiệt dung riêng của nước ở thể lỏng. Để kiểm tra kết luận đó một học sinh đã tiến hành thí nghiệm khảo sát nhiệt độ $t (^\circ C)$ của nước đá theo thời gian T (phút). Học sinh sử dụng các thiết bị thí nghiệm sau: Nhiệt lượng kế, nhiệt kế, oát kế, đồng hồ, thanh nung, dây nối để tiến hành thí nghiệm. Học sinh cho một lượng nước đá vào trong nhiệt lượng kế và làm thí nghiệm. Số liệu đo được từ thí nghiệm được biểu diễn thành đồ thị như hình vẽ. Học sinh đo được các góc $\alpha = 57^\circ$, $\beta = 37^\circ$ và $T_2 = 16,7 T_1$. Biết nhiệt dung riêng của nước (thể lỏng) là $c = 4200\text{ J/(kg.K)}$. Công suất nguồn điện được coi như không đổi và nước chỉ nhận nhiệt từ thanh nung, không trao đổi nhiệt với môi trường trong suốt quá trình tiến hành thí nghiệm.
+
+\img[0.5\textwidth]{phan2_cau2.png}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{tealmain}
+\begin{tabular}{|p{0.75\textwidth}|c|c|}
+\hline
+\centering\textbf{\textcolor{tealmain}{Mệnh đề}} & \textbf{\textcolor{tealmain}{Đúng}} & \textbf{\textcolor{tealmain}{Sai}} \\
+\hline
+\textcolor{tealmain}{\textbf{a)}} \textcolor{black}{Từ thời điểm T = 0 đến thời điểm $T_1$ nước đá nhận nhiệt lượng để tăng nhiệt độ.} & & \\
+\hline
+\textcolor{tealmain}{\textbf{b)}} \textcolor{black}{Từ thời điểm $T_1$ đến thời điểm $T_2$, hỗn hợp nước đá và nước có nhiệt độ $0^\circ C$, nội năng không đổi.} & & \\
+\hline
+\textcolor{tealmain}{\textbf{c)}} \textcolor{black}{Từ kết quả của thí nghiệm, nhiệt dung riêng của nước đá là $2055,3\text{ J/(kg.K)}$.} & & \\
+\hline
+\textcolor{tealmain}{\textbf{d)}} \textcolor{black}{Từ kết quả của thí nghiệm, nhiệt nóng chảy riêng của nước đá là $3,23.10^5\text{ J/kg}$.} & & \\
+\hline
+\end{tabular}
+\arrayrulecolor{black}
+\end{center}
+
+\q{3} Một lượng khí He được đựng trong một bình kín (được coi là khí lí tưởng). Trạng thái của khối khí biến đổi theo chu trình được biểu diễn bởi đồ thị (V, T) như hình vẽ. Cho biết: $V_1 = 1\text{ lít}$, $V_2 = 3\text{ lít}$, $T_1 = 300\text{ K}$, $T_4 = 400\text{ K}$, khối lượng mol của khí He là $4\text{ g/mol}$.
+
+\img[0.4\textwidth]{phan2_cau3.png}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{tealmain}
+\begin{tabular}{|p{0.75\textwidth}|c|c|}
+\hline
+\centering\textbf{\textcolor{tealmain}{Mệnh đề}} & \textbf{\textcolor{tealmain}{Đúng}} & \textbf{\textcolor{tealmain}{Sai}} \\
+\hline
+\textcolor{tealmain}{\textbf{a)}} \textcolor{black}{Quá trình biến đổi từ trạng thái 1 sang trạng thái 2 là quá trình đẳng nhiệt.} & & \\
+\hline
+\textcolor{tealmain}{\textbf{b)}} \textcolor{black}{Quá trình biến đổi từ trạng thái 2 sang trạng thái 4 là quá trình đẳng áp.} & & \\
+\hline
+\textcolor{tealmain}{\textbf{c)}} \textcolor{black}{Thể tích của khối khí ở trạng thái 3 xấp xỉ 1,3 lít.} & & \\
+\hline
+\textcolor{tealmain}{\textbf{d)}} \textcolor{black}{Vận tốc trung bình của phân tử khí He ở trạng thái 3 xấp xỉ 1550,5 m/s.} & & \\
+\hline
+\end{tabular}
+\arrayrulecolor{black}
+\end{center}
+
+\q{4} Để tạo ra dòng điện xoay chiều, người ta đặt một khung dây hình vuông cạnh a, gồm N vòng dây trong từ trường đều của một nam châm được cố định như hình vẽ. Ban đầu vectơ cảm ứng từ cùng phương, cùng chiều với vectơ pháp tuyến của mặt phẳng khung dây. Vectơ cảm ứng từ có độ lớn B. Cho khung dây quay đều với tốc độ góc $\omega\text{ (rad/s)}$ không đổi quanh trục đối xứng $xx'$ (vuông góc với vectơ cảm ứng từ) theo chiều kim đồng hồ. Dòng điện xoay chiều được đưa ra ngoài bằng hệ thống vành khuyên, thanh quét (chổi quét).
+
+\img[0.5\textwidth]{phan2_cau4.png}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{tealmain}
+\begin{tabular}{|p{0.75\textwidth}|c|c|}
+\hline
+\centering\textbf{\textcolor{tealmain}{Mệnh đề}} & \textbf{\textcolor{tealmain}{Đúng}} & \textbf{\textcolor{tealmain}{Sai}} \\
+\hline
+\textcolor{tealmain}{\textbf{a)}} \textcolor{black}{Các đường sức từ có chiều từ cực Bắc sang cực Nam của nam châm.} & & \\
+\hline
+\textcolor{tealmain}{\textbf{b)}} \textcolor{black}{Nam châm là stato, khung dây là rôto.} & & \\
+\hline
+\textcolor{tealmain}{\textbf{c)}} \textcolor{black}{Suất điện động cảm ứng xuất hiện trong khung dây có biểu thức $e = \omega N B a^2 \cos(\omega t)$.} & & \\
+\hline
+\textcolor{tealmain}{\textbf{d)}} \textcolor{black}{Trong thực tế khung dây có điện trở thuần R, nhiệt lượng tỏa ra trên R sau 5 vòng quay đầu tiên của khung là $\dfrac{5\pi B^2 N^2 a^4 \omega}{R}$.} & & \\
+\hline
+\end{tabular}
+\arrayrulecolor{black}
+\end{center}
+
+% ================= PHẦN III =================
+\parttitle{PHẦN III. Câu trắc nghiệm trả lời ngắn.}{Thí sinh trả lời từ câu 1 đến câu 6.}
+
+\q{1} Một tủ đông công nghiệp bay hơi amoniac trong các ống làm mát để loại bỏ nhiệt từ máy làm đá. Ở $-45^\circ C$ nhiệt hoá hơi riêng của amoniac: $1,37.10^6\text{ J/kg}$. Cần bay hơi bao nhiêu kilogram amoniac để loại bỏ 13700 kJ nhiệt?
+
+
+\q{2} Tổng hợp hạt nhân helium ${}_2^4\text{He}$ từ phản ứng hạt nhân ${}_1^1\text{H} + {}_3^7\text{Li} \rightarrow 2{}_2^4\text{He} + X$. Mỗi phản ứng trên tỏa năng lượng 17,3 MeV. Năng lượng tỏa ra khi tổng hợp được 0,5 mol helium là $x.10^{11}\text{ J}$. Giá trị của x bằng bao nhiêu? (Kết quả làm tròn đến chữ số hàng phần mười)
+
+
+\q{3} Một bình kín có thể tích không đổi chứa khí lí tưởng ở áp suất $2.10^5\text{ Pa}$ và nhiệt độ $27^\circ C$. Khi nhiệt độ trong bình tăng tới $327^\circ C$ thì áp suất khí trong bình là $x.10^5\text{ Pa}$. Giá trị của x bằng bao nhiêu?
+
+
+\q{4} Giữa hai cực của một nam châm có một từ trường đều. Vectơ cảm ứng từ có phương thẳng đứng, có độ lớn 1 T. Người ta treo một dây dẫn thẳng chiều dài 5 cm, khối lượng 8 gam nằm ngang trong từ trường bằng hai dây dẫn mảnh nhẹ không dẫn điện. Cho dòng điện không đổi có cường độ 2 A chạy qua dây làm cho hai dây treo lệch với phương thẳng đứng một góc $\alpha$. Lấy $g = 10\text{ m/s}^2$, lực căng của mỗi sợi dây là bao nhiêu mN? (Kết quả làm tròn đến chữ số hàng đơn vị).
+
+\q{5} Một khối khí có thể tích 3 lít, được cung cấp một nhiệt lượng 500 J thì nó giãn nở ở áp suất không đổi ($10^5\text{ Pa}$) đến thể tích 5 lít. Nội năng của khối khí này tăng thêm bao nhiêu J?
+
+
+\q{6} Một bình oxigen y tế có dung tích là 5,5 lít có áp suất ban đầu $2,2.10^7\text{ Pa}$ và nhiệt độ 282 K. Sau khi sử dụng để cấp cứu cho bệnh nhân, áp suất trong bình giảm xuống còn $10^7\text{ Pa}$, nhiệt độ được giữ không đổi. Biết khối lượng mol của oxigen là 32 g/mol. Khối lượng oxigen đã được cung cấp cho bệnh nhân là bao nhiêu kilogram? (Kết quả làm tròn đến chữ số hàng phần mười)?
+
+\vspace{0.4cm}
+\begin{center}
+\textbf{\textcolor{black}{------------------------ HẾT ------------------------}}\\
+\textit{\textcolor{black}{- Thí sinh không được sử dụng tài liệu;}}\\
+\textit{\textcolor{black}{- Cán bộ coi thi không giải thích gì thêm.}}
+\end{center}
+
+\end{document}
