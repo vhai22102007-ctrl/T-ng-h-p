@@ -1,0 +1,256 @@
+\documentclass[14pt, a4paper]{extarticle} % Chữ 14pt cực to và rõ ràng
+
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+\usepackage{mathptmx}
+\usepackage[a4paper, top=2.5cm, bottom=4.2cm, left=1.5cm, right=1.5cm]{geometry}
+
+\usepackage{setspace}
+\setstretch{1.3} % Dãn dòng thoáng
+
+\usepackage{graphicx} % ĐÃ BỎ [demo] ĐỂ HIỆN ẢNH THẬT
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{eso-pic}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{fontawesome5}
+
+% ===== MÀU SẮC CHỦ ĐỀ ĐỎ =====
+\definecolor{mainred}{RGB}{192, 0, 0}
+\definecolor{darkred}{RGB}{128, 0, 0}
+\definecolor{lightred}{RGB}{253, 235, 235}
+\definecolor{redbg}{RGB}{255, 245, 245}
+
+% ===== LỆNH CHÈN 1 ẢNH (BỎ KHUNG) =====
+\newcommand{\redimg}[2][0.45\textwidth]{%
+\begin{center}
+    \includegraphics[width=#1]{#2}
+\end{center}
+}
+
+% ===== LỆNH CHÈN 2 ẢNH SONG SONG (BỎ KHUNG) =====
+\newcommand{\redimgdouble}[2]{%
+\begin{center}
+    \includegraphics[width=0.35\textwidth]{#1}
+    \hspace{1cm}
+    \includegraphics[width=0.35\textwidth]{#2}
+\end{center}
+}
+
+% ===== DÒNG CHẤM CHẤM =====
+\newcommand{\dotlines}[1]{%
+  \par\vspace{0.15cm}
+  \foreach \i in {1,...,#1} {
+    \noindent{\color{mainred!70}\leavevmode\leaders\hbox to 0.6em{\hss.\hss}\hfill\kern0pt}\par
+    \vspace{0.3cm}
+  }
+}
+
+% ===== HEADER / FOOTER =====
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{72pt}
+\setlength{\headsep}{10pt}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ===== HEADER =====
+\fancyhead[C]{%
+\begin{tikzpicture}[remember picture,overlay]
+    \coordinate (NW) at (current page.north west);
+    \coordinate (NE) at (current page.north east);
+
+    \fill[white] ($(NW)+(0,-0.15cm)$) rectangle ($(NE)+(0,-2.20cm)$);
+    \fill[mainred] ($(NW)+(0,-2.10cm)$) rectangle ($(NE)+(0,-2.17cm)$);
+
+    \node[anchor=south west, inner sep=0pt] at ($(NW)+(0.8cm,-2.08cm)$)
+    {\includegraphics[height=2.0cm]{tan.png}};
+
+    \node[anchor=south west, text=mainred, font=\sffamily\bfseries\fontsize{14}{15}\selectfont]
+    at ($(NW)+(3.25cm,-1.95cm)$) {THẦY NGHIÊM XUÂN TÂN};
+
+    \fill[darkred]
+    ($(NW)+(10.45cm,-2.10cm)$) -- ($(NW)+(10.78cm,-2.10cm)$) -- ($(NW)+(11.52cm,-1.05cm)$) -- ($(NW)+(11.20cm,-1.05cm)$) -- cycle;
+
+    \fill[mainred]
+    ($(NW)+(10.88cm,-2.10cm)$) -- ($(NW)+(11.22cm,-2.10cm)$) -- ($(NW)+(11.96cm,-1.05cm)$) -- ($(NW)+(11.62cm,-1.05cm)$) -- cycle;
+
+    \fill[mainred]
+    ($(NW)+(11.30cm,-2.10cm)$) -- ($(NE)+(0,-2.10cm)$) -- ($(NE)+(0,-1.05cm)$) -- ($(NW)+(12.05cm,-1.05cm)$) -- cycle;
+
+    \node[anchor=west, text=white, font=\sffamily\bfseries\fontsize{12}{13}\selectfont]
+    at ($(NW)+(12.28cm,-1.58cm)$) {VẬT LÍ};
+
+    \node[anchor=east, text=white, font=\sffamily\bfseries\fontsize{11}{12}\selectfont]
+    at ($(NE)+(-0.9cm,-1.58cm)$) {ĐỀ THI THỬ LÀO CAI};
+\end{tikzpicture}%
+}
+
+% ===== FOOTER =====
+\fancyfoot[C]{%
+\begin{tikzpicture}[remember picture, overlay]
+    \coordinate (SW) at (current page.south west);
+    \coordinate (SE) at (current page.south east);
+
+    \fill[redbg] (SW) rectangle ($(SW) + (10cm, 1.5cm)$);
+    \fill[mainred] (SW) rectangle ($(SE) + (0, 0.4cm)$);
+    \fill[mainred] ($(SW) + (9.5cm, 0.4cm)$) -- ($(SW) + (11cm, 1.5cm)$) -- ($(SE) + (0, 1.5cm)$) -- ($(SE) + (0, 0.4cm)$) -- cycle;
+
+    \node[anchor=west, text=mainred, font=\sffamily\bfseries\fontsize{18}{20}\selectfont] at ($(SW) + (1.5cm, 0.95cm)$) {Nghiêm Xuân Tân};
+    
+    \node[anchor=east, text=white, font=\bfseries\normalsize] at ($(SE) + (-1.5cm, 0.95cm)$) {Kì thi tốt nghiệp THPT \hspace{0.5cm} \faGraduationCap \ Trang \thepage};
+\end{tikzpicture}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\begin{document}
+
+\vspace*{-1cm}
+
+% ===== TIÊU ĐỀ ĐẦU TRANG =====
+\noindent
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\textbf{SỞ GD\&ĐT LÀO CAI}\\
+\textbf{CỤM CÁC TRƯỜNG THPT PHÍA BẮC}\\
+\vspace{0.1cm}
+\textbf{ĐỀ THI CHÍNH THỨC}\\
+\vspace{0.1cm}
+\textit{(Đề thi có 06 trang)}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.53\textwidth}
+\centering
+\textbf{ĐỀ THI THỬ TỐT NGHIỆP THPT LẦN 2}\\
+\vspace{0.1cm}
+\textbf{NĂM HỌC 2025 - 2026}\\
+\vspace{0.1cm}
+\textbf{Môn: VẬT LÍ}\\
+\vspace{0.1cm}
+\textit{Thời gian làm bài: 50 phút}
+\end{minipage}
+
+\vspace{0.4cm}
+
+\noindent
+\begin{minipage}[b]{0.7\textwidth}
+\textbf{Họ và tên:} \dotfill\\[0.1cm]
+\textbf{Số báo danh:} \dotfill
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.25\textwidth}
+\centering
+\setlength{\fboxsep}{8pt}
+\fcolorbox{mainred}{white}{\textbf{Mã đề: 0223}}
+\end{minipage}
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{Cho biết:} $\pi = 3,14$; $T(K) = t(^\circ C) + 273$; $R = 8,31 \text{ J.mol}^{-1}\text{.K}^{-1}$; $N_A = 6,02.10^{23} \text{ hạt/mol}$.
+
+\vspace{0.2cm}
+\hrule height 1pt
+\vspace{0.4cm}
+
+% ===================== PHẦN I =====================
+\noindent\textbf{\textcolor{mainred}{PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.}}\\
+\textit{Thí sinh trả lời từ câu 1 đến câu 18. Mỗi câu hỏi thí sinh chỉ chọn một phương án.}
+
+\vspace{0.2cm}
+
+\noindent\textbf{\textcolor{mainred}{Câu 1:}} Trong hiện tượng cảm ứng điện từ, suất điện động cảm ứng sinh ra do sự biến thiên của từ thông theo thời gian được xác định bằng biểu thức\\[0.1cm]
+\begin{tabular}{p{0.23\textwidth} p{0.23\textwidth} p{0.25\textwidth} p{0.23\textwidth}}
+\textbf{A.} $e = N \cdot \dfrac{\Delta\Phi^2}{\Delta t}$. & \textbf{B.} $e = N \cdot \Delta\Phi \cdot \Delta t$. & \textbf{C.} $e = -N \cdot \Delta\Phi \cdot \Delta t$. & \textbf{D.} $e = -N \cdot \dfrac{\Delta\Phi}{\Delta t}$.
+\end{tabular}
+
+\vspace{0.2cm}
+
+\noindent\textbf{\textcolor{mainred}{Câu 2:}} Điều nào sau đây là sai khi nói về độ không tuyệt đối 0 K?\\[0.1cm]
+\begin{tabular}{p{0.48\textwidth} p{0.48\textwidth}}
+\textbf{A.} Nước tinh khiết nóng chảy. & \textbf{B.} Thế năng các phân tử là tối thiểu. \\[0.1cm]
+\textbf{C.} Nhiệt độ thấp nhất của vật chất. & \textbf{D.} Động năng chuyển động nhiệt phân tử bằng không.
+\end{tabular}
+
+\vspace{0.2cm}
+
+\noindent\textbf{\textcolor{mainred}{Câu 3:}} Cho phản ứng phân hạch: ${}_{0}^{1}n + {}_{92}^{235}U \rightarrow {}_{39}^{94}Y + {}_{53}^{140}I + x({}_{0}^{1}n)$. Giá trị của x bằng\\[0.1cm]
+\begin{tabular}{p{0.23\textwidth} p{0.23\textwidth} p{0.23\textwidth} p{0.23\textwidth}}
+\textbf{A.} 3. & \textbf{B.} 1. & \textbf{C.} 4. & \textbf{D.} 2.
+\end{tabular}
+
+\vspace{0.2cm}
+
+\noindent\textbf{\textcolor{mainred}{Câu 4:}} Câu nào sau đây nói về nhiệt lượng là không đúng?\\[0.1cm]
+\textbf{A.} Nhiệt lượng không phải là nội năng.\\[0.1cm]
+\textbf{B.} Đơn vị nhiệt lượng cũng là đơn vị nội năng.\\[0.1cm]
+\textbf{C.} Một vật lúc nào cũng có nội năng, do đó lúc nào cũng có nhiệt lượng.\\[0.1cm]
+\textbf{D.} Nhiệt lượng là số đo độ biến thiên nội năng của vật trong quá trình truyền nhiệt.
+
+\vspace{0.2cm}
+
+\noindent\textbf{\textcolor{mainred}{Câu 5:}} Hình bên dưới mô tả đường đi của ba loại tia phóng xạ: X, Y và Z. 
+\redimg[0.2\textwidth]{60.png}
+X, Y, Z có bản chất lần lượt là\\[0.1cm]
+\begin{tabular}{p{0.48\textwidth} p{0.48\textwidth}}
+\textbf{A.} tia alpha, tia beta, tia gamma. & \textbf{B.} tia gamma, tia alpha, tia beta. \\[0.1cm]
+\textbf{C.} tia beta, tia gamma, tia alpha. & \textbf{D.} tia beta, tia alpha, tia gamma.
+\end{tabular}
+
+\vspace{0.2cm}
+
+\noindent\textbf{\textcolor{mainred}{Câu 12:}} Một khối khí thực hiện các quá trình biến đổi trạng thái như hình bên. Ý nào sau đây là không đúng?
+\redimg[0.35\textwidth]{67.png}
+\begin{tabular}{p{0.48\textwidth} p{0.48\textwidth}}
+\textbf{A.} CA là quá trình giãn nở đẳng nhiệt. & \textbf{B.} $p_A V_A = p_C V_C$. \\[0.1cm]
+\textbf{C.} AB là quá trình nén đẳng tích. & \textbf{D.} $\dfrac{V_A}{T_A} = \dfrac{V_B}{T_B}$.
+\end{tabular}
+
+\vspace{0.2cm}
+
+\noindent\textbf{\textcolor{mainred}{Câu 15:}} Hai bình kín A và B chứa cùng một loại khí có mật độ phân tử khí tương ứng là $\mu_1, \mu_2$ sao cho $\mu_1 = 2\mu_2$. Nếu nhiệt độ tuyệt đối của bình B gấp 4 lần nhiệt độ tuyệt đối của bình A thì áp suất của bình A và B lúc đó lần lượt là $p_1$ và $p_2$. Kết luận nào sau đây đúng?\\[0.1cm]
+\begin{tabular}{p{0.23\textwidth} p{0.23\textwidth} p{0.23\texftwidth} p{0.23\textwidth}}
+\textbf{A.} $p_1 = 4p_2$. & \textbf{B.} $p_1 = 2p_2$. & \textbf{C.} $p_1 = 0,5p_2$. & \textbf{D.} $p_1 = p_2$.
+\end{tabular}
+
+\newpage
+
+% ===================== PHẦN II =====================
+\noindent\textbf{\textcolor{mainred}{PHẦN II. Câu trắc nghiệm đúng sai.}}\\
+\textit{Thí sinh trả lời từ câu 1 đến câu 4. Trong mỗi ý a), b), c), d) ở mỗi câu, thí sinh chọn đúng hoặc sai.}
+
+\vspace{0.3cm}
+
+\noindent\textbf{\textcolor{mainred}{Câu 1:}} Cảm biến báo khói ion hoá (Hình vẽ) sử dụng đồng vị phóng xạ $\alpha$ Americium ${}_{95}^{241}\text{Am}$ với chu kì bán rã 432,6 năm. Một lượng nhỏ ${}_{95}^{241}\text{Am}$ được đặt giữa hai bản kim loại kết nối với một pin. Để đảm bảo an toàn, độ phóng xạ tối đa đặt trong cảm biến là 29,6 kBq. Cảm biến sẽ ngừng hoạt động khi độ phóng xạ còn lại chỉ bằng 68 Bq.
+\redimg[0.35\textwidth]{75.png}
+\textbf{a)} Thời gian hoạt động tối đa của cảm biến khói này là 4200 năm.\\[0.1cm]
+\textbf{b)} Phương trình phóng xạ tương ứng là ${}_{95}^{241}\text{Am} \rightarrow {}_{93}^{237}\text{Np} + {}_{2}^{4}\alpha$.\\[0.1cm]
+\textbf{c)} Khối lượng tối đa của ${}_{95}^{241}\text{Am}$ đặt trong cảm biến là $0,013 \cdot 10^{-3}$ g.\\[0.1cm]
+\textbf{d)} Hằng số phóng xạ của ${}_{95}^{241}\text{Am}$ là $5,08 \cdot 10^{-13}$ s$^{-1}$.
+\dotlines{1}
+
+\vspace{0.4cm}
+
+% ===================== PHẦN III =====================
+\noindent\textbf{\textcolor{mainred}{PHẦN III. Câu trắc nghiệm trả lời ngắn.}}\\
+\textit{Thí sinh trả lời từ câu 1 đến câu 6.}
+
+\vspace{0.3cm}
+
+\noindent\textbf{\textcolor{mainred}{Câu 1:}} Hình bên mô tả một chiếc bàn là hơi nước. Nước từ một bình chứa nhỏ giọt vào một tấm kim loại được nung nóng bằng điện.
+\redimgdouble{80.png}{81.png}
+Bộ phận làm nóng tiêu thụ công suất điện 1,5 kW. Giả sử rằng toàn bộ năng lượng điện, từ bộ phận làm nóng được truyền đến tấm kim loại, tấm kim loại luôn được duy trì ở nhiệt độ làm việc của nó. Nước ở $30^\circ C$ nhỏ giọt vào tấm kim loại biến thành hơi nước ở $100^\circ C$ liên tục bay ra từ bàn là. Nhiệt hóa hơi riêng của nước là $2,3 \cdot 10^6$ J/kg, nhiệt dung riêng của nước là 4200 J/kg.K. Mỗi phút bàn là tạo ra bao nhiêu gam hơi nước? (Làm tròn kết quả đến chữ số hàng phần mười).
+\dotlines{2}
+
+\vspace{1cm}
+\begin{center}
+\textbf{\Large --- HẾT ---}
+\end{center}
+
+\end{document}
