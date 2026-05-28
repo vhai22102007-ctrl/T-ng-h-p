@@ -1,0 +1,353 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+% Phông chữ Times (tương tự bản gốc)
+\usepackage{mathptmx}
+% Căn lề trang nhỏ lại theo yêu cầu
+\usepackage[left=1.5cm,right=1.5cm,top=1.5cm,bottom=1.5cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{arydshln} % Gói hỗ trợ kẻ bảng nét đứt
+\usepackage{multirow}
+\usepackage{pdfpages}
+\usepackage{fontawesome5} % Để dùng icon quyển sách trên Header
+\usepackage{multido} % Sửa lỗi thiếu thư viện cho lệnh \multido
+
+% ======================================
+% CẤU HÌNH DÃN DÒNG & TOÁN HỌC
+% ======================================
+\setstretch{1.35} % Dãn dòng thoáng, không bị dày dít
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\everymath{\displaystyle} % Ép tất cả công thức, phân số to rõ ràng
+
+% ======================================
+% ĐỊNH NGHĨA MÀU SẮC
+% ======================================
+\definecolor{qcolor}{HTML}{8B0000} % Màu đỏ đậm theo mã 8B0000
+\definecolor{lightgray}{RGB}{200, 200, 200} % Xám nhạt kẻ dòng
+
+% ======================================
+% LỆNH TẠO CÂU HỎI & ĐÁP ÁN
+% ======================================
+% Lệnh cấu trúc "Câu X : " màu đỏ đậm
+\newcommand{\cau}[1]{%
+    \par\vspace{0.4cm} % Khoảng cách giữa các câu thoáng đẹp
+    \noindent\textbf{\textcolor{qcolor}{Câu #1. }}\hspace{0.1cm}%
+}
+
+% Ô KQ nét đứt, bo tròn, viền màu đỏ đậm
+\newcommand{\kq}{\par\vspace{0.1cm}\noindent\hfill \textcolor{qcolor}{\textbf{KQ:} \tikz[baseline=-0.3em] \node[draw=qcolor, dashed, rounded corners=4pt, minimum width=3.5cm, minimum height=0.8cm] {};}\par\vspace{0.2cm}}
+
+% Các lệnh tạo bảng đáp án A, B, C, D (Chữ A,B,C,D màu đỏ đậm, nội dung màu đen)
+\newcommand{\choicefour}[4]{%
+\par\vspace{0.05cm}
+\noindent\begin{tabularx}{\textwidth}{@{}X X X X@{}}
+\textbf{\textcolor{qcolor}{A.}} \textcolor{black}{#1} & \textbf{\textcolor{qcolor}{B.}} \textcolor{black}{#2} & \textbf{\textcolor{qcolor}{C.}} \textcolor{black}{#3} & \textbf{\textcolor{qcolor}{D.}} \textcolor{black}{#4}
+\end{tabularx}\par
+}
+
+\newcommand{\choicetwo}[4]{%
+\par\vspace{0.05cm}
+\noindent\begin{tabularx}{\textwidth}{@{}X X@{}}
+\textbf{\textcolor{qcolor}{A.}} \textcolor{black}{#1} & \textbf{\textcolor{qcolor}{B.}} \textcolor{black}{#2}\\[0.15cm]
+\textbf{\textcolor{qcolor}{C.}} \textcolor{black}{#3} & \textbf{\textcolor{qcolor}{D.}} \textcolor{black}{#4}
+\end{tabularx}\par
+}
+
+\newcommand{\choiceone}[4]{%
+\par\vspace{0.05cm}
+\noindent\textbf{\textcolor{qcolor}{A.}} \textcolor{black}{#1}\\[0.1cm]
+\noindent\textbf{\textcolor{qcolor}{B.}} \textcolor{black}{#2}\\[0.1cm]
+\noindent\textbf{\textcolor{qcolor}{C.}} \textcolor{black}{#3}\\[0.1cm]
+\noindent\textbf{\textcolor{qcolor}{D.}} \textcolor{black}{#4}\par
+}
+
+% ======================================
+% THIẾT KẾ HEADER & FOOTER
+% ======================================
+\pagestyle{fancy}
+\fancyhf{}
+
+% --- LỀ TRÊN ---
+\fancyhead[L]{\raisebox{-0.15cm}{\textcolor{qcolor}{\textbf{\faBook\ Nghiêm Vũ Đức Cảnh }} }}
+\fancyhead[R]{\raisebox{-0.15cm}{\textcolor{qcolor}{\textbf{The best way to predict the future is to create it}}}}
+
+% --- LỀ DƯỚI ---
+\fancyfoot[L]{\raisebox{-0.15cm}{\textcolor{qcolor}{\LaTeX\ bởi Nguyễn Văn Hải}}}
+\fancyfoot[C]{\raisebox{-0.15cm}{\textcolor{qcolor}{\textbf{\thepage}}}}
+\fancyfoot[R]{\raisebox{-0.15cm}{\textcolor{qcolor}{\textbf{Believe in yourself and all that you are}}}}
+
+% --- ĐỘ DÀY ĐƯỜNG KẺ ---
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% --- ĐỔI MÀU, KÉO DÀI ĐƯỜNG KẺ & HẠ DÒNG KẺ XUỐNG ---
+\renewcommand{\headrule}{\vspace{-0.2cm}\hbox to\headwidth{\hss\color{qcolor}\rule{\paperwidth}{\headrulewidth}\hss}}
+\renewcommand{\footrule}{\hbox to\headwidth{\hss\color{qcolor}\rule{\paperwidth}{\footrulewidth}\hss}\vspace{0.15cm}}
+
+% Lệnh tạo số dòng kẻ ngang (cũ)
+\newcommand{\linefill}[1]{%
+    \par\vspace{0.1cm}
+    \multido{\i=1+1}{#1}{\noindent\makebox[\textwidth]{\rule{0pt}{4mm}\hrulefill}\par}
+    \vspace{0.2cm}
+}
+
+% ======================================
+% LỆNH KẺ DÒNG THÔNG MINH KÍN TRANG (MỚI)
+% ======================================
+% Lệnh này tự động lấp đầy phần khoảng trống còn lại của trang bằng dòng kẻ ngang nét liền mờ (cách nhau 0.8cm) và tự động sang trang.
+\newcommand{\filllines}{%
+  \par\vspace{0.5cm}
+  \leaders\vbox to 0.8cm{\vfill\noindent\textcolor{lightgray}{\rule{\textwidth}{0.5pt}}}\vfill
+  \newpage
+}
+
+\begin{document}
+
+% ======================================
+% TIÊU ĐỀ ĐỀ THI
+% ======================================
+\begin{center}
+\color{qcolor} % Ép toàn bộ bảng tiêu đề thành màu đỏ
+\begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}} c c }
+\textbf{Sở GD và DT tình Thái Bình} & \textbf{ĐỀ THI THỬ VÀO 10 THPT NĂM HỌC 2026 - 2027} \\
+\textbf{TRƯỜNG TH\&THCS HẢI TRIỀU} & \textbf{MÔN: TOÁN} \\
+\textit{(Đề thi có 04 trang)} & \textit{Thời gian làm bài: 90 phút (không kể thời gian phát đề)}
+\end{tabular*}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{tabularx}{\textwidth}{@{}X r@{}}
+\textcolor{qcolor}{Họ và tên: \dotfill} & \multirow{2}{*}{\textcolor{qcolor}{\fbox{\textbf{Mã đề: 1106}}}} \\
+\textcolor{qcolor}{Số báo danh: \dotfill} & \\
+\end{tabularx}
+\vspace{0.5cm}
+
+% ======================================
+% PHẦN I
+% ======================================
+\noindent\textbf{\textcolor{qcolor}{PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.}} \textit{Thí sinh trả lời từ câu 1 đến câu 26. Mỗi câu hỏi thí sinh chỉ chọn một phương án.}
+
+\cau{1} Điều kiện xác định của biểu thức $\sqrt{5x+15}$ là
+\choicefour{$x \ge 0$.}{$x \ge 5$.}{$x \ge -3$.}{$x \ge -15$.}
+
+\cau{2} Cho đường tròn $(O; R)$ có dây $AB = R\sqrt{2}$. Số đo góc nội tiếp chắn cung lớn $AB$ bằng
+\choicefour{$270^\circ$.}{$240^\circ$.}{$135^\circ$.}{$90^\circ$.}
+
+\cau{3} Giải bất phương trình $8x + 17 - 3(2x + 3) \le 10(x + 2)$ ta được
+\choicefour{$x \ge \frac{3}{4}$.}{$x \ge \frac{-3}{2}$.}{$x \le \frac{3}{4}$.}{$x \le \frac{-3}{2}$.}
+
+\cau{4} Hình nào dưới đây \textbf{không} có dạng đa giác đều?
+\begin{center}
+\includegraphics[width=0.55\textwidth]{dagiac.png}
+\end{center}
+\choicefour{Hình c.}{Hình d.}{Hình a.}{Hình b.}
+
+\cau{5} Khi phản ứng hóa học $2\text{FeCl}_3 + x\text{Fe} \rightarrow y\text{FeCl}_2$ cân bằng thì giá trị của $2x + 3y$ là
+\choicefour{12.}{9.}{8.}{11.}
+
+\cau{6} Từ độ cao $30\text{ m}$, một vật rơi tự do xuống mặt đất. Biết quãng đường rơi $s$ (mét) của vật được cho bởi công thức $s = \frac{1}{2}gt^2$, trong đó $g = 9,8\text{ m/s}^2$ là gia tốc rơi tự do, $t$ (giây) là thời gian vật rơi tính từ lúc bắt đầu thả. Hỏi độ dài quãng đường vật di chuyển được trong $1$ giây cuối trước khi chạm đất là bao nhiêu mét? (làm tròn kết quả đến chữ số thập phân thứ nhất).
+\choicefour{$19,4\text{ m}$.}{$19,3\text{ m}$.}{$19,6\text{ m}$.}{$19,5\text{ m}$.}
+
+\cau{7} Cô Dung ghi lại độ dài quãng đường (km) mình đi xe đạp mỗi ngày để rèn luyện sức khỏe trong tháng 4 năm 2026 ở bảng sau:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\small
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+10,6 & 11,1 & 11,6 & 11,9 & 13,2 & 11,4 & 12,2 & 10,7 & 12,7 & 12,0 & 10,1 & 12,4 & 11,8 & 13,5 & 11,6 \\
+\hline
+11,3 & 10,9 & 12,8 & 10,2 & 10,8 & 11,0 & 10,5 & 13,0 & 11,5 & 11,7 & 12,2 & 10,3 & 11,0 & 10,4 & 11,3 \\
+\hline
+\end{tabular}
+\end{center}
+Tần số tương đối ghép nhóm của nhóm số liệu $[10; 11)$ là
+\choicefour{$36,67\%$.}{$33,33\%$.}{$30\%$.}{$40\%$.}
+
+\cau{8} Một quả bóng đá của trẻ em dạng hình cầu có bán kính $R = 8\text{ cm}$. Diện tích bề mặt của quả bóng đó bằng
+\choicefour{$256\pi\text{ (cm}^2\text{)}$.}{$128\pi\text{ (cm}^2\text{)}$.}{$\frac{2048}{3}\pi\text{ (cm}^2\text{)}$.}{$\frac{512}{3}\pi\text{ (cm}^2\text{)}$.}
+
+\cau{9} Với $a < b$, biểu thức $\frac{1}{a-b}\sqrt{3^2\cdot(a-b)^2}$ có kết quả rút gọn là
+\choicefour{$\sqrt{3}$.}{$3$.}{$-3$.}{$-\sqrt{3}$.}
+
+\cau{10} Một túi đựng 5 viên bi có cùng khối lượng và kích thước, được đánh số $1; 2; 3; 4; 5$. Lần thứ nhất, bạn Bình lấy ngẫu nhiên một viên bi từ trong túi, ghi lại số trên viên bi rồi bỏ lại viên bi vào túi. Lần thứ hai, bạn Bình cũng lấy ngẫu nhiên một viên bi từ trong túi, ghi lại số trên viên bi rồi bỏ lại viên bi vào túi. Xác suất của biến cố A: ``Tích hai số ghi trên hai viên bi bạn Bình lấy được không lớn hơn 8'' là
+\choicefour{$\frac{11}{25}$.}{$\frac{1}{5}$.}{$\frac{14}{25}$.}{$\frac{17}{25}$.}
+
+\cau{11} Hải đăng Kê Gà nằm tại xã Tân Thành tỉnh Lâm Đồng (trước 01/7/2025 thuộc xã Tân Thành, huyện Hàm Thuận Nam, tỉnh Bình Thuận cũ) nổi tiếng với vẻ đẹp biển mênh mông và di sản văn hóa lịch sử. Với tuổi đời lên đến 125 năm, ngọn hải đăng này đã chứng kiến bao thăng trầm qua thời gian và trở thành biểu tượng độc đáo của khu vực. Cho biết ngọn hải đăng cao 65 m so với mặt nước biển. Hỏi với khoảng cách xa nhất là bao nhiêu kilômét thì người quan sát trên tàu bắt đầu trông thấy ngọn hải đăng này?
+\begin{center}
+\includegraphics[width=0.25\textwidth]{anh1.png}
+\end{center}
+Cho biết mắt người quan sát ở độ cao 5 m so với mặt nước biển và bán kính Trái Đất gần bằng 6400 km.
+\choicefour{41,03 km.}{25,92 km.}{28,84 km.}{36,84 km.}
+
+\cau{12} Cho $\triangle ABC$ có độ dài các cạnh $AB = 10$ cm; $AC = 24$ cm; $BC = 26$ cm. Diện tích hình tròn ngoại tiếp $\triangle ABC$ bằng
+\choicefour{$169\pi$ cm$^2$.}{$121\pi$ cm$^2$.}{$144\pi$ cm$^2$.}{$105\pi$ cm$^2$.}
+
+\cau{13} Tính tổng các nghiệm của phương trình: $\sqrt{x^2 - x - 8} = \sqrt{4 - 2x}$.
+\choicefour{$-1$.}{$1$.}{$-4$.}{$7$.}
+
+\cau{14} Trong các khẳng định sau, khẳng định nào sai?
+\choicefour{Với ba số thực $a$, $b$, $c$ ta có: nếu $a < b$ và $b < c$ thì $a < c$.}{Với hai số thực $a$, $b$ ta có: nếu $a > b$ thì $a^2 > b^2$.}{Với ba số thực $a$, $b$, $c$ ta có: nếu $a > b$ thì $a + c > b + c$.}{Với ba số thực $a$, $b$, $c$ (trong đó $c > 0$) ta có: nếu $a > b$ thì $ac > bc$.}
+
+\cau{15} Giải phương trình $\dfrac{4}{x+3} = \dfrac{3x+10}{x^2+2x-3} + \dfrac{2}{1-x}$ được nghiệm $x = \dfrac{a}{b}$ với $\dfrac{a}{b}$ là phân số tối giản có mẫu dương. Khi đó giá trị của $a + b$ là
+\choicefour{11.}{10.}{7.}{8.}
+
+\cau{16} Tuổi nghề (đơn vị: năm) của 32 giáo viên ở một trường THCS được biểu diễn ở biểu đồ như hình bên. Tần số của giáo viên có tuổi nghề 10 năm là
+\begin{center}
+\includegraphics[width=0.6\textwidth]{anh2.png}
+\end{center}
+\choicefour{4.}{8.}{5.}{6.}
+
+\cau{17} Cầu Đông Trù bắc qua sông Đuống, nằm trên quốc lộ 5 kéo dài, nối xã Đông Anh ở phía bắc Hà Nội và phường Bồ Đề ở phía nam Hà Nội. Nhịp giữa cầu dài 120 mét được thiết kế bằng vòm thép nhồi bê tông có hình một cung tròn. Khoảng cách từ điểm cao nhất của mái vòm xuống mặt sàn của cầu là 47 mét được mô phỏng như hình vẽ dưới đây. Tính độ dài bán kính $R$ của đường tròn chứa cung tròn là nhịp giữa của cầu Đông Trù. (Kết quả làm tròn đến 1 chữ số thập phân.)
+\begin{center}
+\includegraphics[width=0.3\textwidth]{anh3.png}
+\hspace{1cm}
+\includegraphics[width=0.3\textwidth]{anh4.png}
+\end{center}
+\choicefour{70,6 m.}{59,2 m.}{72,5 m.}{61,8 m.}
+
+\cau{18} Cho parabol $(P)\ y = x^2$ và đường thẳng $(d)$: $y = mx - 3$ (với $m$ là tham số). Tính tích các giá trị của $m$ để $(d)$ cắt $(P)$ tại hai điểm phân biệt có hoành độ $x_1$, $x_2$ thỏa mãn $x_1^2 - x_1 \cdot x_2 + 2 = 0$.
+\choicefour{14.}{17.}{$-1$.}{$-12$.}
+
+\cau{19} Một hình nón có bán kính đáy bằng $r$ và chiều cao của hình nón bằng $h$ thì công thức tính thể tích $V$ của hình nón đó là
+\choicefour{$V = \dfrac{4}{3}\pi r^2 h$.}{$V = \dfrac{1}{3}\pi r^2 h$.}{$V = 3\pi r^2 h$.}{$V = \pi r^2 h$.}
+\cau{20} Phương trình nào sau đây là phương trình bậc nhất hai ẩn?
+\choicefour{$2x + 3xy = 5$.}{$x - \frac{1}{y} = 3$.}{$x^2 - 2x + 3 = 0$.}{$x + \frac{y}{2} = 5$.}
+
+\cau{21} Nhà bạn Hà nằm trên một tuyến phố có các ngôi nhà được đánh số chẵn từ 2 đến 124. Bạn Hà sinh tháng 9. Chọn ngẫu nhiên một số nhà trên tuyến phố đó, tính xác suất để số nhà được chọn là số chia hết cho tháng sinh của bạn Hà.
+\choicefour{$\frac{3}{31}$.}{$\frac{15}{62}$.}{$\frac{7}{62}$.}{$\frac{5}{21}$.}
+
+\cau{22} Kim giờ và kim phút của một chiếc đồng hồ tạo thành góc ở tâm có số đo là bao nhiêu độ vào thời điểm lúc 5 giờ?
+\choicefour{$210^\circ$.}{$90^\circ$.}{$125^\circ$.}{$150^\circ$.}
+
+\cau{23} Theo quy hoạch của một khu dân cư gần sân bay thì chiều cao các ngôi nhà ở đây không được vượt quá 6,5 m. Anh Sơn định thiết kế một ngôi nhà để xây dựng ở khu dân cư này. Ngôi nhà có thiết diện cắt ngang với các kích thước như hình bên, biết mái nhà là một tam giác vuông. Trong 4 khẳng định sau, có bao nhiêu khẳng định đúng?
+\begin{center}
+\includegraphics[width=0.35\textwidth]{thiet_dien_nha.png}
+\end{center}
+(1) $\sin CBD = \frac{AC}{BC}$.\\
+(2) Nếu $BC = CD$ thì $\sin B = \frac{\sqrt{2}}{2}$.\\
+(3) Nếu $BC = 3,1\text{ m}$ thì $\widehat{CBD} \approx 42^\circ15'$.\\
+(4) Nếu mái nhà có $\widehat{CBD} = 60^\circ$ thì chiều cao của ngôi nhà trong bản thiết kế của anh Sơn đảm bảo đúng theo quy hoạch.
+\choicefour{1.}{4.}{2.}{3.}
+
+\cau{24} Biểu đồ đoạn thẳng ở hình bên biểu diễn số lượng máy giặt bán được của một cửa hàng trong bốn tháng đầu năm. Nếu mỗi chiếc máy giặt bán ra cửa hàng lãi 2 000 000 đồng thì sau bốn tháng đầu năm, cửa hàng thu được số tiền lãi là
+\begin{center}
+\includegraphics[width=0.45\textwidth]{bieu_do_may_giat.png}
+\end{center}
+\choicefour{128 000 000 đồng.}{114 000 000 đồng.}{65 000 000 đồng.}{100 000 000 đồng.}
+
+\cau{25} Trục đối xứng của đồ thị hàm số $y = -\frac{1}{2}x^2$ là
+\choicefour{trục $Oy$.}{trục $Ox$.}{trục $Ox$ và trục $Oy$.}{trục hoành.}
+
+\cau{26} Số nào là căn bậc hai của 9?
+\choicefour{$-3$ và $3$.}{$-81$ và $81$.}{$3$.}{$81$.}
+
+
+% ======================================
+% PHẦN II (Ngắt sang trang mới)
+% ======================================
+\newpage
+\noindent\textbf{\textcolor{qcolor}{PHẦN II. Câu trắc nghiệm đúng sai. Thí sinh trả lời từ câu 1 đến câu 2. Trong mỗi ý a), b), c), d) ở mỗi câu, thí sinh chọn đúng hoặc sai.}}
+
+\cau{1} Cho phương trình $x^2 - (m-1)x + m - 2 = 0$ (1) (ẩn $x$, tham số $m$).
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{qcolor}
+\setlength{\dashlinedash}{3pt}
+\setlength{\dashlinegap}{3pt}
+\begin{tabular}{:p{0.75\textwidth}:c:c:}
+\hdashline
+\centering\textbf{\textcolor{qcolor}{Mệnh đề}} & \textbf{\textcolor{qcolor}{Đúng}} & \textbf{\textcolor{qcolor}{Sai}} \\
+\hdashline
+\textbf{\textcolor{qcolor}{a)}} \textcolor{black}{Khi $m = 5$ thì phương trình (1) có hai nghiệm là 1 và -3.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{b)}} \textcolor{black}{Có vô số giá trị nguyên dương của $m$ để phương trình (1) có hai nghiệm dương phân biệt.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{c)}} \textcolor{black}{Phương trình (1) là phương trình bậc hai ẩn $x$ với $a = 1$; $b = 1 - m$; $c = m - 2$.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{d)}} \textcolor{black}{Sau hai năm dân số của một xã tăng từ 10 000 người lên 10 404 người. Gọi tỉ số phần trăm tăng dân số trung bình hằng năm của xã đó là $k\%$ ($k > 0$) thì $k$ là một nghiệm của phương trình (1) khi $m = 4$.} & & \\
+\hdashline
+\end{tabular}
+\arrayrulecolor{black}
+\end{center}
+\filllines
+
+\cau{2} Cho đường thẳng $d$ cắt đường tròn $(O; 5\text{ cm})$ tại hai điểm $M; N$. Gọi khoảng cách từ $O$ đến đường thẳng $d$ là $OH$.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{qcolor}
+\setlength{\dashlinedash}{3pt}
+\setlength{\dashlinegap}{3pt}
+\begin{tabular}{:p{0.75\textwidth}:c:c:}
+\hdashline
+\centering\textbf{\textcolor{qcolor}{Mệnh đề}} & \textbf{\textcolor{qcolor}{Đúng}} & \textbf{\textcolor{qcolor}{Sai}} \\
+\hdashline
+\textbf{\textcolor{qcolor}{a)}} \textcolor{black}{$MN \le 10\text{ cm}$.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{b)}} \textcolor{black}{Nếu $MN = 5\text{ cm}$ thì $\widehat{MON} = 60^\circ$.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{c)}} \textcolor{black}{$OH > 5\text{ cm}$.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{d)}} \textcolor{black}{Nếu $MN = 5\sqrt{2}\text{ cm}$ thì độ dài cung lớn $MN$ là $\frac{15\pi}{2}\text{ (cm)}$.} & & \\
+\hdashline
+\end{tabular}
+\arrayrulecolor{black}
+\end{center}
+\filllines
+
+% ======================================
+% PHẦN III
+% ======================================
+\noindent\textbf{\textcolor{qcolor}{PHẦN III. Câu trắc nghiệm trả lời ngắn.}} Thí sinh trả lời từ câu 1 đến câu 6.
+
+\cau{1} Để làm một mô hình chiếc bút chì trang trí, người ta dùng một khối gỗ hình trụ và một khối gỗ hình nón có cùng đường kính đáy chồng khít lên nhau (như hình vẽ). Khối gỗ hình trụ có đường kính đáy là 20 cm, chiều cao là 30 cm. Khối gỗ hình nón có chiều cao là 15 cm. Thể tích gỗ cần dùng để làm mô hình này là bao nhiêu dm$^3$? (Kết quả làm tròn đến hàng đơn vị).
+\begin{center}
+\includegraphics[width=0.25\textwidth]{1.png}
+\end{center}
+\filllines
+
+\cau{2} Trên hình vẽ bên, đường tròn $(O; r)$ tiếp xúc với hai nửa đường tròn tâm $I$, tâm $K$ có cùng bán kính bằng 1 (cm) và tiếp xúc với hai cung tròn $BC$, $AC$ của hai đường tròn tâm $A$, tâm $B$ có cùng bán kính bằng 4 (cm). Tính diện tích hình tròn $(O; r)$ trên hình vẽ bên được kết quả là $\dfrac{a}{b}\pi$ (cm$^2$), với $\dfrac{a}{b}$ là phân số tối giản có mẫu dương. Tính $a + b$.
+\begin{center}
+\includegraphics[width=0.5\textwidth]{2.png}
+\end{center}
+\filllines
+
+\cau{3} Cho đường tròn $(A;\ 5\ \text{cm})$ và $(B;\ 7\ \text{cm})$. Hai đường tròn tiếp xúc ngoài nếu khoảng cách giữa $A$ và $B$ là bao nhiêu đề--xi--mét?
+\filllines
+
+\cau{4} Hai hộ gia đình nhà chú Hải và chú Triều có những vườn nhãn rộng ở xã Tiên Lữ tỉnh Hưng Yên. Năm 2024, cả hai hộ gia đình thu hoạch được 27 tấn nhãn. So với năm 2024, năm 2025 hộ gia đình nhà chú Hải thu hoạch được lượng nhãn tăng 10\% còn hộ gia đình nhà chú Triều thu hoạch được lượng nhãn tăng 15\%, do vậy cả hai hộ gia đình đó đã thu hoạch được thêm 3,3 tấn nhãn. Biết rằng trong năm 2025, các lò sấy long trong xã Tiên Lữ đã thu mua 60\% lượng nhãn của nhà chú Hải và 50\% lượng nhãn của nhà chú Triều. Tính số tấn nhãn các lò sấy long ở xã Tiên Lữ đã thu mua từ hai hộ gia đình này trong năm 2025.
+\begin{center}
+\includegraphics[width=0.2\textwidth]{3.png}
+\end{center}
+\filllines
+
+\cau{5} Gieo một đồng xu cân đối đồng chất ba lần liên tiếp. Tính xác suất của biến cố $A$: ``Có ít nhất hai lần xuất hiện là mặt ngửa''.
+\filllines
+
+\cau{6} Một người khi đi taxi của hãng A sẽ phải trả chi phí gồm: Phí mở cửa cố định (tính một lần, không phụ thuộc quãng đường); Phí di chuyển được tính theo số kilomet thực tế đã đi, với mức giá không đổi trên mỗi kilomet. Biết rằng: Một chuyến đi dài 10 km có giá 109 nghìn đồng; một chuyến đi dài 6 km có giá 69 nghìn đồng.
+
+Nhân dịp nghỉ cuối tuần, bạn Mai muốn về thăm ông bà ngoại. Nhà ông bà ngoại cách nhà Mai 32 km. Bạn Mai đang cân nhắc giữa hai phương án di chuyển sau:
+
+Phương án 1: Đi taxi hãng A từ nhà đến thẳng nhà ông bà ngoại.
+
+Phương án 2: Đi taxi hãng A từ nhà đến trạm xe buýt, sau đó tiếp tục đi xe buýt đến nhà ông bà ngoại.
+
+Biết rằng giá vé xe buýt tuyến này là 55 nghìn đồng, không phụ thuộc vào khoảng cách đi.
+
+Hỏi: Trạm xe buýt cần cách nhà Mai tối đa bao nhiêu kilomet để tổng chi phí của phương án 2 không vượt quá tổng chi phí của phương án 1?
+\begin{center}
+\includegraphics[width=0.8\textwidth]{4.png}
+\end{center}
+\filllines
+
+\begin{center}
+
+\end{center}
+\end{document}
