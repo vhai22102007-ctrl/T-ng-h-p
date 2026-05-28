@@ -1,0 +1,313 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+% Phông chữ Times (tương tự bản gốc)
+\usepackage{mathptmx}
+% Căn lề trang nhỏ lại theo yêu cầu
+\usepackage[left=1.5cm,right=1.5cm,top=1.5cm,bottom=1.5cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{arydshln} % Gói hỗ trợ kẻ bảng nét đứt
+\usepackage{multirow}
+\usepackage{pdfpages}
+\usepackage{fontawesome5} % Để dùng icon quyển sách trên Header
+
+% ======================================
+% CẤU HÌNH DÃN DÒNG & TOÁN HỌC
+% ======================================
+\setstretch{1.35} % Dãn dòng thoáng, không bị dày dít
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\everymath{\displaystyle} % Ép tất cả công thức, phân số to rõ ràng
+
+% ======================================
+% ĐỊNH NGHĨA MÀU SẮC
+% ======================================
+\definecolor{qcolor}{HTML}{8B0000} % Màu đỏ đậm theo mã 8B0000
+\definecolor{lightgray}{RGB}{200, 200, 200} % Xám nhạt kẻ dòng
+
+% ======================================
+% LỆNH TẠO CÂU HỎI & ĐÁP ÁN
+% ======================================
+% Lệnh cấu trúc "Câu X [NXT] : " màu đỏ đậm
+\newcommand{\cau}[1]{%
+    \par\vspace{0.4cm} % Khoảng cách giữa các câu thoáng đẹp
+    \noindent\textbf{\textcolor{qcolor}{Câu #1 [NXT] : }}\hspace{0.1cm}%
+}
+
+% Ô KQ nét đứt, bo tròn, viền màu đỏ đậm
+\newcommand{\kq}{\par\vspace{0.1cm}\noindent\hfill \textcolor{qcolor}{\textbf{KQ:} \tikz[baseline=-0.3em] \node[draw=qcolor, dashed, rounded corners=4pt, minimum width=3.5cm, minimum height=0.8cm] {};}\par\vspace{0.2cm}}
+
+% Kẻ dòng mờ để làm tự luận ở phần III (Khoảng cách đã thu hẹp)
+\newcommand{\solidlines}[1]{%
+  \par\vspace{0.1cm}
+  \foreach \i in {1,...,#1} {
+    \noindent{\color{lightgray}\rule{\textwidth}{0.5pt}}\par
+    \vspace{0.35cm} % Khoảng cách dòng kẻ thu hẹp lại
+  }
+}
+
+% Các lệnh tạo bảng đáp án A, B, C, D (Chữ A,B,C,D màu đỏ đậm, nội dung màu đen)
+\newcommand{\choicefour}[4]{%
+\par\vspace{0.05cm}
+\noindent\begin{tabularx}{\textwidth}{@{}X X X X@{}}
+\textbf{\textcolor{qcolor}{A.}} \textcolor{black}{#1} & \textbf{\textcolor{qcolor}{B.}} \textcolor{black}{#2} & \textbf{\textcolor{qcolor}{C.}} \textcolor{black}{#3} & \textbf{\textcolor{qcolor}{D.}} \textcolor{black}{#4}
+\end{tabularx}\par
+}
+
+\newcommand{\choicetwo}[4]{%
+\par\vspace{0.05cm}
+\noindent\begin{tabularx}{\textwidth}{@{}X X@{}}
+\textbf{\textcolor{qcolor}{A.}} \textcolor{black}{#1} & \textbf{\textcolor{qcolor}{B.}} \textcolor{black}{#2}\\[0.15cm]
+\textbf{\textcolor{qcolor}{C.}} \textcolor{black}{#3} & \textbf{\textcolor{qcolor}{D.}} \textcolor{black}{#4}
+\end{tabularx}\par
+}
+
+\newcommand{\choiceone}[4]{%
+\par\vspace{0.05cm}
+\noindent\textbf{\textcolor{qcolor}{A.}} \textcolor{black}{#1}\\[0.1cm]
+\noindent\textbf{\textcolor{qcolor}{B.}} \textcolor{black}{#2}\\[0.1cm]
+\noindent\textbf{\textcolor{qcolor}{C.}} \textcolor{black}{#3}\\[0.1cm]
+\noindent\textbf{\textcolor{qcolor}{D.}} \textcolor{black}{#4}\par
+}
+
+% ======================================
+% THIẾT KẾ HEADER & FOOTER
+% ======================================
+\pagestyle{fancy}
+\fancyhf{}
+
+% --- LỀ TRÊN (Dùng raisebox để hạ chữ xuống một xíu) ---
+\fancyhead[L]{\raisebox{-0.15cm}{\textcolor{qcolor}{\textbf{\faBook\ Thầy Nghiêm Xuân Tân}}}}
+\fancyhead[R]{\raisebox{-0.15cm}{\textcolor{qcolor}{\textbf{Physics Class}}}}
+
+% --- LỀ DƯỚI (Hạ chữ xuống cho đồng bộ) ---
+\fancyfoot[L]{\raisebox{-0.15cm}{\textcolor{qcolor}{\LaTeX\ bởi Nguyễn Văn Hải}}}
+\fancyfoot[C]{\raisebox{-0.15cm}{\textcolor{qcolor}{\textbf{\thepage}}}}
+\fancyfoot[R]{\raisebox{-0.15cm}{\textcolor{qcolor}{\textbf{Kì thi đánh giá tư duy TSA}}}}
+
+% --- ĐỘ DÀY ĐƯỜNG KẺ ---
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% --- ĐỔI MÀU, KÉO DÀI ĐƯỜNG KẺ & HẠ DÒNG KẺ XUỐNG ---
+\renewcommand{\headrule}{\vspace{-0.2cm}\hbox to\headwidth{\hss\color{qcolor}\rule{\paperwidth}{\headrulewidth}\hss}}
+\renewcommand{\footrule}{\hbox to\headwidth{\hss\color{qcolor}\rule{\paperwidth}{\footrulewidth}\hss}\vspace{0.15cm}}
+
+\begin{document}
+
+% ======================================
+% TIÊU ĐỀ ĐỀ THI
+% ======================================
+\begin{center}
+\color{qcolor} % Ép toàn bộ bảng tiêu đề thành màu đỏ
+\begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}} c c }
+\textbf{SỞ GIÁO DỤC VÀ ĐÀO TẠO} & \textbf{KỲ THI THỬ TRƯỚC KỲ THI TỐT NGHIỆP} \\
+\textbf{TỈNH GIA LAI} & \textbf{TRUNG HỌC PHỔ THÔNG NĂM 2026} \\
+\textbf{ĐỀ CHÍNH THỨC} & \textbf{Môn thi: TOÁN} \\
+\textit{(Đề thi có 4 trang)} & \textit{Thời gian làm bài: 90 phút; không kể thời gian phát đề}
+\end{tabular*}
+\end{center}
+\vspace{0.2cm}
+\noindent\begin{tabularx}{\textwidth}{@{}X r@{}}
+\textcolor{qcolor}{Họ và tên thí sinh: \dotfill} & \multirow{2}{*}{\textcolor{qcolor}{\fbox{\textbf{Mã đề thi: 0111}}}} \\
+\textcolor{qcolor}{Số báo danh: \dotfill} & \\
+\end{tabularx}
+\vspace{0.5cm}
+
+% ======================================
+% PHẦN I
+% ======================================
+\noindent\textbf{\textcolor{qcolor}{PHẦN I. Thí sinh trả lời từ câu 1 đến câu 12. Mỗi câu hỏi thí sinh chỉ chọn một phương án.}}
+
+\cau{1} Tập nghiệm của bất phương trình $\log_{0,5} x > 0$ là
+\choicefour{$(0; +\infty)$.}{$(1; +\infty)$.}{$(-\infty; 1)$.}{$(0; 1)$.}
+
+\cau{2} Cho hình chóp $S.ABC$ có đáy $ABC$ là tam giác vuông tại $B$ và $SA \perp (ABC)$. Gọi $I$ là trung điểm của $BC$. Mặt phẳng nào dưới đây vuông góc với đường thẳng $BC$?
+\choicefour{$(SAI)$.}{$(SBI)$.}{$(SAB)$.}{$(SAC)$.}
+
+\cau{3} Cho cấp số nhân $(u_n)$ có $u_1 = -2$ và $u_2 = -4$. Giá trị $u_6$ bằng
+\choicefour{64.}{-128.}{128.}{-64.}
+
+\cau{4} Họ tất cả các nguyên hàm của hàm số $f(x) = x^{2026}$ trên $\mathbb{R}$ là
+\choicefour{$2026x^{2027} + C$.}{$\frac{x^{2027}}{2026} + C$.}{$\frac{x^{2027}}{2027} + C$.}{$2027x^{2027} + C$.}
+
+\cau{5} Cho hàm số $y = f(x)$ có đồ thị như hình vẽ.
+\begin{center}
+\includegraphics[width=0.3\textwidth]{anh.png}
+\end{center}
+Giá trị cực đại của hàm số đã cho bằng
+\choicefour{2.}{4.}{-1.}{1.}
+
+\cau{6} Tiệm cận ngang của đồ thị hàm số $y = \frac{6x - 4}{1 - 2x}$ là đường thẳng có phương trình
+\choicefour{$y = 6$.}{$y = -3$.}{$y = 2$.}{$x = -3$.}
+
+\cau{7} Trong không gian với hệ tọa độ $Oxyz$, cho đường thẳng $\Delta: \frac{x+1}{-2} = \frac{y-3}{3} = \frac{z-2}{-2}$. Vectơ nào dưới đây là một vectơ chỉ phương của đường thẳng $\Delta$?
+\choicefour{$\vec{u} = (-2; 3; -2)$.}{$\vec{u} = (2; -3; -2)$.}{$\vec{u} = (-1; -3; -2)$.}{$\vec{u} = (-1; 3; 2)$.}
+
+\cau{8} Trong không gian với hệ tọa độ $Oxyz$, cho điểm $M$ thỏa mãn $\overrightarrow{OM} = -2\vec{i} + \vec{j} + 3\vec{k}$. Tọa độ của điểm $M$ là
+\choicefour{$(2; 1; 3)$.}{$(1; 2; 3)$.}{$(1; -2; 3)$.}{$(-2; 1; 3)$.}
+
+\cau{9} Cho tứ diện $ABCD$ có trọng tâm $G$ và $M$ là một điểm bất kì. Phát biểu nào dưới đây sai?
+\choicetwo{$\overrightarrow{AG} = \frac{1}{4}(\overrightarrow{AB} + \overrightarrow{AC} + \overrightarrow{AD})$.}{$\overrightarrow{GA} + \overrightarrow{GB} + \overrightarrow{GC} + \overrightarrow{GD} = \vec{0}$.}{$\overrightarrow{MA} + \overrightarrow{MB} + \overrightarrow{MC} + \overrightarrow{MD} = 4\overrightarrow{MG}$.}{$\overrightarrow{AG} = \frac{1}{3}(\overrightarrow{AB} + \overrightarrow{AC} + \overrightarrow{AD})$.}
+
+\cau{10} Nghiệm của phương trình $3^{x-1} = 8$ là
+\choicefour{$x = 3$.}{$x = \log_3 8$.}{$x = 1 + \log_8 3$.}{$x = \log_3 24$.}
+
+\cau{11} Biết rằng $F(x)$ là một nguyên hàm của hàm số $f(x) = \sin x$ trên $\mathbb{R}$ và thỏa mãn $F(0) = 6$. Phát biểu nào dưới đây đúng?
+\choicefour{$F(x) = -\cos x$.}{$F(x) = -\cos x + 6$.}{$F(x) = -\cos x + 7$.}{$F(x) = -\cos x + 5$.}
+
+\cau{12} Cho bảng biểu diễn mẫu số liệu ghép nhóm về số tiền (đơn vị: nghìn đồng) mà 60 khách hàng mua sữa ở một cửa hàng trong một ngày như sau:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\textbf{Nhóm} & \textbf{[40; 50)} & \textbf{[50; 60)} & \textbf{[60; 70)} & \textbf{[70; 80)} & \textbf{[80; 90)} & \\
+\hline
+Tần số & 3 & 6 & 19 & 23 & 9 & $n = 60$ \\
+\hline
+Tần số tích lũy & 3 & 9 & 28 & 51 & 60 & \\
+\hline
+\end{tabular}
+\end{center}
+Khoảng tứ phân vị của mẫu số liệu ghép nhóm trên (làm tròn kết quả đến hàng phần trăm) là
+\choicefour{40,00.}{14,23.}{50,00.}{70,87.}
+
+% ======================================
+% PHẦN II
+% ======================================
+\vspace{0.5cm}
+\noindent\textbf{\textcolor{qcolor}{PHẦN II. Thí sinh trả lời từ câu 1 đến câu 4. Trong mỗi ý a), b), c), d) ở mỗi câu, thí sinh chọn đúng hoặc sai.}}
+
+\cau{1} Xét hàm số $y = \frac{bx - c}{x - a}$ ($ab \neq 0$) có đồ thị như hình dưới.
+\begin{center}
+\includegraphics[width=0.4\textwidth]{anh2.png}
+\end{center}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{qcolor}
+\setlength{\dashlinedash}{3pt}
+\setlength{\dashlinegap}{3pt}
+\begin{tabular}{:p{0.75\textwidth}:c:c:}
+\hdashline
+\centering\textbf{\textcolor{qcolor}{Mệnh đề}} & \textbf{\textcolor{qcolor}{Đúng}} & \textbf{\textcolor{qcolor}{Sai}} \\
+\hdashline
+\textbf{\textcolor{qcolor}{a)}} \textcolor{black}{$a > 0$, $b > 0$.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{b)}} \textcolor{black}{$c - ab > 0$.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{c)}} \textcolor{black}{$a > 0$, $b < 0$, $c - ab < 0$.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{d)}} \textcolor{black}{$a > 0$, $b > 0$, $c - ab < 0$.} & & \\
+\hdashline
+\end{tabular}
+\arrayrulecolor{black}
+\end{center}
+
+\cau{2} Trong không gian với hệ tọa độ $Oxyz$, một cabin trong hệ thống cáp treo ở Vinpearl Nha Trang xuất phát từ điểm $A(-1; 2; 6)$ chuyển động thẳng đều theo hướng vectơ $\vec{u} = (0; -3; 4)$ với tốc độ $5 \text{ m/s}$ (đơn vị trên mỗi trục tọa độ là mét). Sau 6 giây kể từ lúc xuất phát, cabin đến điểm $T(a; b; c)$.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{qcolor}
+\setlength{\dashlinedash}{3pt}
+\setlength{\dashlinegap}{3pt}
+\begin{tabular}{:p{0.75\textwidth}:c:c:}
+\hdashline
+\centering\textbf{\textcolor{qcolor}{Mệnh đề}} & \textbf{\textcolor{qcolor}{Đúng}} & \textbf{\textcolor{qcolor}{Sai}} \\
+\hdashline
+\textbf{\textcolor{qcolor}{a)}} \textcolor{black}{Hai vectơ $\overrightarrow{AT}$ và $\vec{u}$ cùng hướng.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{b)}} \textcolor{black}{Phương trình tham số đường thẳng $AT$ là $\begin{cases} x = -1 + t \\ y = 2 - 3t \\ z = 6 + 4t \end{cases} (t \in \mathbb{R})$.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{c)}} \textcolor{black}{$AT = 36\text{ m}$.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{d)}} \textcolor{black}{$12a - b + c = 34$.} & & \\
+\hdashline
+\end{tabular}
+\arrayrulecolor{black}
+\end{center}
+
+\cau{3} Một quần thể vi khuẩn ban đầu gồm 500 vi khuẩn, sau đó bắt đầu tăng trưởng. Sau 1 ngày, số lượng vi khuẩn của quần thể đó đã tăng lên thành 600 vi khuẩn. Gọi $P(t)$ là số lượng vi khuẩn của quần thể đó tại thời điểm $t$, trong đó $t$ tính theo ngày ($0 \le t \le 17$). Biết tốc độ tăng trưởng của quần thể vi khuẩn đó là đạo hàm $P'(t) = k\sqrt{t}$, trong đó $k$ là hằng số.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{qcolor}
+\setlength{\dashlinedash}{3pt}
+\setlength{\dashlinegap}{3pt}
+\begin{tabular}{:p{0.75\textwidth}:c:c:}
+\hdashline
+\centering\textbf{\textcolor{qcolor}{Mệnh đề}} & \textbf{\textcolor{qcolor}{Đúng}} & \textbf{\textcolor{qcolor}{Sai}} \\
+\hdashline
+\textbf{\textcolor{qcolor}{a)}} \textcolor{black}{$P'(t)$ là một nguyên hàm của $P(t)$.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{b)}} \textcolor{black}{$P(0) = 500$.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{c)}} \textcolor{black}{$P(t) = \frac{2}{3}k t\sqrt{t} + C$ với $C$ là một hằng số xác định.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{d)}} \textcolor{black}{Số lượng vi khuẩn của quần thể đó sau 16 ngày là 9600.} & & \\
+\hdashline
+\end{tabular}
+\arrayrulecolor{black}
+\end{center}
+
+\cau{4} Nhân dịp đầu năm mới, giáo viên chủ nhiệm lì xì cho học sinh lớp 12 chuyên toán (biết lớp có 35 học sinh) với phương thức: Giáo viên đưa ra 35 phong bì, trong đó 5 phong bì có tiền lì xì và 30 phong bì rỗng, rồi giáo viên gọi lần lượt các học sinh lên tự chọn cho mình 1 phong bì.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\arrayrulecolor{qcolor}
+\setlength{\dashlinedash}{3pt}
+\setlength{\dashlinegap}{3pt}
+\begin{tabular}{:p{0.75\textwidth}:c:c:}
+\hdashline
+\centering\textbf{\textcolor{qcolor}{Mệnh đề}} & \textbf{\textcolor{qcolor}{Đúng}} & \textbf{\textcolor{qcolor}{Sai}} \\
+\hdashline
+\textbf{\textcolor{qcolor}{a)}} \textcolor{black}{Xác suất học sinh đầu tiên chọn được phong bì có tiền là $\frac{1}{7}$.} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{b)}} \textcolor{black}{Học sinh lên chọn đầu tiên có xác suất chọn được phong bì có tiền là cao nhất (cao hơn hẳn).} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{c)}} \textcolor{black}{Học sinh nhận phong bì cuối cùng có xác suất chọn được phong bì có tiền là cao nhất (cao hơn hẳn).} & & \\
+\hdashline
+\textbf{\textcolor{qcolor}{d)}} \textcolor{black}{Xác suất chọn được phong bì có tiền của tất cả các học sinh đều bằng nhau.} & & \\
+\hdashline
+\end{tabular}
+\arrayrulecolor{black}
+\end{center}
+
+% ======================================
+% PHẦN III
+% ======================================
+\vspace{0.5cm}
+\noindent\textbf{\textcolor{qcolor}{PHẦN III. Thí sinh trả lời từ câu 1 đến câu 6.}}
+
+\cau{1} Trong mặt phẳng với hệ tọa độ $Oxy$, cho ngũ giác đều $ABCDE$ có tâm $I$, $A(-2; -4)$, $B(2; -4)$ và năm parabol $(P_1), (P_2), (P_3), (P_4), (P_5)$ giống nhau như hình dưới. Biết $(P_1)$ có đỉnh là gốc tọa độ $O$, hỏi diện tích hình phẳng giới hạn bởi năm parabol đã cho bằng bao nhiêu (không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần trăm)?
+\begin{center}
+\includegraphics[width=0.45\textwidth]{anh3.png}
+\end{center}
+\kq
+
+\cau{2} Một hộ kinh doanh mỗi ngày sản xuất được $x$ kg sản phẩm ($0 < x < 14$) với tổng chi phí sản xuất được tính bởi hàm chi phí $C(x) = x^3 - 3x^2 - 19x + 200$ (đơn vị: nghìn đồng). Giả sử hộ này bán hết sản phẩm mỗi ngày với giá 170 nghìn đồng/kg. Hỏi hộ đó thu được lợi nhuận tối đa trong một ngày là bao nhiêu nghìn đồng?
+\kq
+
+\cau{3} Trước mặt bạn có sáu cánh cửa. Trong số đó, có năm cánh cửa mà ở đằng sau mỗi cánh cửa có gắn 120 USD và một cánh cửa mà ở đằng sau là ``người thu hồi''. Bạn có thể chọn bất kỳ sự kết hợp nào của các cánh cửa mà bạn thích và sau đó mở tất cả chúng ra. Nếu tất cả các cánh cửa bạn mở đều có tiền thì bạn sẽ giữ được tất cả số tiền đó. Tuy nhiên, nếu một trong những cánh cửa bạn mở ra có người thu hồi thì họ sẽ lấy hết số tiền ở các cánh cửa kia (nếu có) và bạn không nhận được gì. Tất nhiên là bạn muốn tối đa hóa số tiền thắng được kỳ vọng của bạn. Nếu bạn chọn số lượng cửa tối ưu thì số tiền thắng được kỳ vọng của bạn là bao nhiêu USD?
+\kq
+
+\cau{4} Trong mặt phẳng với hệ tọa độ $Oxy$, lấy 3 điểm $A, B, C$ thuộc parabol $(P): y = x^2$ có hoành độ tương ứng là 3 số nguyên liên tiếp nhau và đều lớn hơn 2026. Hỏi diện tích của tam giác $ABC$ bằng bao nhiêu?
+\kq
+
+\cau{5} Một hợp tác xã chăn nuôi dự định trộn hai loại thức ăn gia súc $X$ và $Y$ để tạo thành thức ăn hỗn hợp cho gia súc. Giá một bao loại $X$ là 260 nghìn đồng, giá một bao loại $Y$ là 210 nghìn đồng. Mỗi bao loại $X$ chứa 2 đơn vị chất dinh dưỡng $A$, 2 đơn vị chất dinh dưỡng $B$ và 2 đơn vị chất dinh dưỡng $C$. Mỗi bao loại $Y$ chứa 1 đơn vị chất dinh dưỡng $A$, 9 đơn vị chất dinh dưỡng $B$ và 3 đơn vị chất dinh dưỡng $C$. Hỏi chi phí nhỏ nhất để mua hai loại thức ăn gia súc $X$ và $Y$ sao cho hỗn hợp thu được chứa tối thiểu 12 đơn vị chất dinh dưỡng $A$, 36 đơn vị chất dinh dưỡng $B$ và 24 đơn vị chất dinh dưỡng $C$ là bao nhiêu nghìn đồng?
+\kq
+
+\cau{6} Cho hình hộp chữ nhật $ABCD.A'B'C'D'$ có $AB = 2$, $BC = 3$ và $CC' = 6$. Gọi $I$ là trung điểm của $AA'$ và $G$ là trọng tâm tam giác $BCD$. Khoảng cách giữa hai đường thẳng $B'D'$ và $IG$ bằng bao nhiêu (không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần trăm)?
+\kq
+
+\vspace{1cm}
+\begin{center}
+\textit{-- Thí sinh không được sử dụng tài liệu;}\\
+\textit{-- Giám thị không giải thích gì thêm.}
+\end{center}
+
+\end{document}
